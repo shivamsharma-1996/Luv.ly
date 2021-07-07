@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.call.CallingActivity"
+    android:background="#7F857F">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/semi_transparent"/>
+
+    <com.github.abdularis.civ.AvatarImageView
+        android:id="@+id/iv_user_pic"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_width="@dimen/_64sdp"
+        android:layout_height="@dimen/_64sdp"
+        android:src="@drawable/sumantu"
+        app:strokeWidth="1dp"
+        app:view_state="IMAGE"
+        app:avatarBackgroundColor="#a94a93"
+        app:text="S"
+        app:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_24sdp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Sumantu Mittal"
+        android:textColor="#fff"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_user_pic" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Incoming video call..."
+        android:textSize="@dimen/textSizeMedium"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:fontFamily="@font/calibri"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"/>
+
+    <TextView
+        android:id="@+id/tv_swipe_to_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe up to answer"
+        android:textColor="#fff"
+        android:layout_marginBottom="@dimen/_32sdp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_semibold"
+        android:textSize="@dimen/textSizeNormal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fab_pick_up"/>
+
+    <RelativeLayout
+        android:id="@+id/fab_pick_up"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_marginBottom="@dimen/_32sdp"
+        android:background="@drawable/background_concentric_stroke"
+        app:layout_constraintBottom_toTopOf="@+id/tv_swipe_to_decline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            app:tint="@color/white"
+            app:backgroundTint="#7f2cef"
+            app:maxImageSize="32dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_call" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_swipe_to_decline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Swipe down to decline"
+        android:textColor="#a7aec8"
+        android:layout_marginBottom="@dimen/_21sdp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nunito_semibold"
+        android:textSize="@dimen/textSizeNormal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

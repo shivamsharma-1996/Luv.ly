@@ -1,0 +1,51 @@
+[
+  {
+    "from": "me",
+    "message" : "Hi, how are you",
+    "seen": true,
+    "time": "10:27",
+    "type": "text"
+  },
+  {
+    "from": "other",
+    "message" : "I'm fine",
+    "seen": true,
+    "time": "10:28",
+    "type": "text"
+  },
+  {
+    "from": "other",
+    "message" : "What about you, How you doing?",
+    "seen": true,
+    "time": "10:29",
+    "type": "text"
+  },
+  {
+    "from": "me",
+    "message" : "We're pretty good, having supper at home",
+    "seen": true,
+    "time": "11:01",
+    "type": "text"
+  },
+  {
+    "from": "other",
+    "message" : "Okay, It was nice talking to you",
+    "seen": true,
+    "time": "11:02",
+    "type": "text"
+  },
+  {
+    "from": "me",
+    "message" : "Cheers!",
+    "seen": false,
+    "time": "11:03",
+    "type": "text"
+  },
+  {
+    "from": "me",
+    "message" : "Ok, bye",
+    "seen": false,
+    "time": "11:03",
+    "type": "text"
+  }
+]
