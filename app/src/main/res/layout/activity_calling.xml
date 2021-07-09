@@ -49,18 +49,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Incoming video call..."
-        android:textSize="@dimen/textSizeMedium"
+        android:text="Incoming audio call..."
+        android:textSize="@dimen/textSizeNormal"
         android:textColor="@color/white"
-        android:textStyle="bold"
-        android:fontFamily="@font/calibri"
+        android:fontFamily="@font/nunito_bold"
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_user_name"/>
 
     <TextView
-        android:id="@+id/tv_swipe_to_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Swipe up to answer"
@@ -86,7 +84,6 @@
         >
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
             android:layout_width="56dp"
             android:layout_height="56dp"
             app:tint="@color/white"
@@ -103,7 +100,6 @@
         android:text="Swipe down to decline"
         android:textColor="#a7aec8"
         android:layout_marginBottom="@dimen/_21sdp"
-        android:includeFontPadding="false"
         android:fontFamily="@font/nunito_semibold"
         android:textSize="@dimen/textSizeNormal"
         app:layout_constraintStart_toStartOf="parent"

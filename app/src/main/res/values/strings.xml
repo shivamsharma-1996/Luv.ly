@@ -1,3 +1,18 @@
 <resources>
-    <string name="app_name">Guftagoo</string>
+    <string name="app_name">Luv.ly</string>
+    <string name="agree_privacy_policy">By signing up for Luv.ly, you agree to our <u>Terms of Service</u>. Learn how we process your data in our <u>Privacy Policy</u></string>
+    <string name="continue_with_phone_number">Continue with Phone Number</string>
+    <string name="app_one_liner">Say Goodbye to lonelyness</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_phone_auth_disclaimer">We need to verify your account, and exclusively for that reason. It will never be shown on your profile</string>
+    <string name="hint_91">+91</string>
+    <string name="hint_your_phone_number">Your Phone Number</string>
+    <string name="we_have_sent_a_verification_code_to">We have sent a verification code to</string>
+    <string name="resend_now">Resend Now</string>
+    <string name="didn_t_receive_the_code">Didn\'t receive the code?</string>
+    <string name="label_name_disclaimer">Provide us your real name to identify you correctly, your name will be visible to others</string>
+    <string name="label_age_disclaimer">We need your date of birth so we can personalize the data as per age-group ☺️</string>
+    <string name="btn_continue">Continue</string>
+    <string name="label_photo_disclaimer">The photo in your profile must be a picture of you.</string>
 </resources>

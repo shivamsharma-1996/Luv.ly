@@ -31,6 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -55,6 +58,12 @@ dependencies {
 
     //sdp
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
+    implementation 'com.chaos.view:pinview:1.4.4'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

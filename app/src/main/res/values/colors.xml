@@ -9,24 +9,25 @@
     <color name="white">#FFFFFFFF</color>
     <color name="semi_transparent">#80000000</color>
 
+    <color name="primary_gradient_start">#4004BB</color>
+    <color name="primary_gradient_end">#8A1AAA</color>
+
+    <color name="colorPrimary">#802df0</color>
+    <color name="colorPrimaryDark">#502C8F</color>
 
     <color name="primary_light">#D1C4E9</color>
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#757575</color>
-    <color name="icons">#FFFFFF</color>
-    <color name="divider">#BDBDBD</color>
-    <color name="blue">#0E79E4</color>
-
-    <color name="colorPrimary">#6C40BA</color>
-    <color name="colorPrimaryDark">#502C8F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="textPrimary">#FF4A4A4A</color>
     <color name="textSecondary">#FF8B8C8D</color>
     <color name="textNormal">@android:color/black</color>
 
+    <!-- GREY -->
+    <color name="lightGray">#F2F2F2</color>
     <color name="greyDark">#FFB0B0B0</color>
     <color name="greyLightShadow">#FFF0F0F0</color>
-    <!-- GREY -->
     <color name="grey_50">#FAFAFA</color>
     <color name="grey_100">#F5F5F5</color>
     <color name="grey_200">#EEEEEE</color>
@@ -36,4 +37,7 @@
     <color name="grey_800">#424242</color>
 
 
+    <!-- Pinview -->
+    <color name="line_selected">#000</color>
+    <color name="line_default2">#BDBDBD</color>
 </resources>

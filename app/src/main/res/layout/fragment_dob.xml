@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.onboarding.DobFragment">
+
+    <TextView
+        android:id="@+id/label_dob"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="What is your date of birth?"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="@dimen/textSizeXLarge"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_16sdp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_dob"/>
+
+    <TextView
+        android:id="@+id/tv_dob"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_light_gray_underlay"
+        android:padding="@dimen/_12sdp"
+        android:textSize="@dimen/textSizeMedium"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintTop_toBottomOf="@+id/label_dob"
+        app:layout_constraintBottom_toTopOf="@+id/label_dob_disclaimer"/>
+
+    <TextView
+        android:id="@+id/label_dob_disclaimer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textSecondary"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginStart="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_6sdp"
+        android:lineSpacingExtra="-4dp"
+        android:textSize="@dimen/textSizeMini"
+        app:layout_constraintStart_toEndOf="@id/gl_start"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintBottom_toTopOf="@+id/btn_continue"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dob"
+        android:text="@string/label_age_disclaimer"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <TextView
+        android:id="@+id/btn_continue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:background="@drawable/bg_stroke_dim_translucent"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/btn_continue"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/textSizeMedium"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:padding="@dimen/_10sdp"
+        android:alpha="0.5"
+        style="@style/ripple"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

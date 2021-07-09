@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.onboarding.NameFragment">
+
+    <TextView
+        android:id="@+id/label_full_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="What's your full name?"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="@dimen/textSizeXLarge"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/_16sdp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/et_name"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_light_gray_underlay"
+        android:imeOptions="actionDone"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:text=""
+        android:padding="@dimen/_12sdp"
+        android:textSize="@dimen/textSizeMedium"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintTop_toBottomOf="@+id/label_full_name"
+        app:layout_constraintBottom_toTopOf="@+id/label_name_disclaimer"/>
+
+    <TextView
+        android:id="@+id/label_name_disclaimer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textSecondary"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:paddingStart="@dimen/_6sdp"
+        android:paddingEnd="@dimen/_6sdp"
+        android:lineSpacingExtra="-4dp"
+        android:textSize="@dimen/textSizeMini"
+        app:layout_constraintStart_toEndOf="@id/gl_start"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintBottom_toTopOf="@+id/btn_continue"
+        app:layout_constraintTop_toBottomOf="@+id/et_name"
+        android:text="@string/label_name_disclaimer"/>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+    
+    <TextView
+        android:id="@+id/btn_continue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:background="@drawable/bg_stroke_dim_translucent"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Continue"
+        android:textColor="@color/textSecondary"
+        android:textSize="@dimen/textSizeMedium"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:padding="@dimen/_10sdp"
+        android:alpha="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

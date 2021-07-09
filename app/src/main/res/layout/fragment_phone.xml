@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboarding.PhoneFragment">
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="What's your phone number?"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="@dimen/textSizeXLarge"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.92"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/ll_country_code"/>
+
+    <LinearLayout
+        android:id="@+id/ll_country_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="8dp"
+        android:paddingEnd="4dp"
+        android:background="@drawable/bg_light_gray_underlay"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/btn_continue">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/india"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/et_country_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxEms="3"
+            android:background="@null"
+            android:hint="@string/hint_91"
+            android:inputType="number"
+            android:text="+91"
+            android:textColor="@color/black"
+            android:padding="@dimen/_12sdp"
+            android:textSize="@dimen/textSizeMedium"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/et_phone_number"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:background="@drawable/bg_light_gray_underlay"
+        android:imeOptions="actionDone"
+        android:inputType="phone"
+        android:maxLength="15"
+        android:text="8824965636"
+        android:padding="@dimen/_12sdp"
+        android:textSize="@dimen/textSizeMedium"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+       app:layout_constraintStart_toEndOf="@+id/ll_country_code"
+        app:layout_constraintTop_toTopOf="@+id/ll_country_code"
+        app:layout_constraintBottom_toBottomOf="@+id/ll_country_code"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textSecondary"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:paddingStart="@dimen/_4sdp"
+        android:paddingEnd="@dimen/_4sdp"
+        android:lineSpacingExtra="-4dp"
+        android:textSize="@dimen/textSizeMini"
+        app:layout_constraintStart_toEndOf="@id/gl_start"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintTop_toBottomOf="@+id/ll_country_code"
+        android:text="@string/label_phone_auth_disclaimer"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <TextView
+        android:id="@+id/btn_continue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:background="@drawable/bg_solid_round_primary"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Continue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textSizeMedium"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:padding="@dimen/_10sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

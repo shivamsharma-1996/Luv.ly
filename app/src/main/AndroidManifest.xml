@@ -11,16 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Guftagoo">
-        <activity android:name="com.shivam.guftagoo.ui.auth.PhoneActivity"></activity>
-        <activity android:name="com.shivam.guftagoo.ui.call.CallingActivity">
+        <activity android:name=".ui.walkthrough.WelcomeActivity">
+
+        </activity>
+        <activity android:name=".ui.onboarding.OnboardingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.UsersActivity"></activity>
-        <activity android:name=".home.MainActivity" />
+        <activity android:name=".ui.call.CallingActivity">
+
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.onboarding.GenderFragment">
+
+    <TextView
+        android:id="@+id/label_gender"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="I am a"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="@dimen/textSizeXXXXLarge"
+        android:gravity="center"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:layout_marginBottom="@dimen/_24sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start"
+        app:layout_constraintBottom_toTopOf="@+id/btn_woman"/>
+
+    <TextView
+        android:id="@+id/btn_woman"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_stroke_bright_translucent"
+        android:fontFamily="@font/nunito_bold"
+        android:text="WOMAN"
+        android:textColor="@color/textSecondary"
+        android:textAlignment="center"
+        android:padding="@dimen/_12sdp"
+        style="@style/ripple"
+        app:layout_constraintTop_toBottomOf="@+id/label_gender"
+        app:layout_constraintBottom_toTopOf="@+id/btn_man"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start" />
+
+    <TextView
+        android:id="@+id/btn_man"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_stroke_bright_translucent"
+        android:fontFamily="@font/nunito_bold"
+        android:text="MAN"
+        android:textColor="@color/textSecondary"
+        android:textAlignment="center"
+        android:padding="@dimen/_12sdp"
+        style="@style/ripple"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_woman"
+        app:layout_constraintBottom_toTopOf="@+id/btn_others"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start" />
+
+    <TextView
+        android:id="@+id/btn_others"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:background="@drawable/bg_stroke_bright_translucent"
+        android:fontFamily="@font/nunito_bold"
+        android:text="OTHERS"
+        android:textColor="@color/textSecondary"
+        android:textAlignment="center"
+        android:padding="@dimen/_12sdp"
+        style="@style/ripple"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_man"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_end"
+        app:layout_constraintStart_toEndOf="@+id/gl_start" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
