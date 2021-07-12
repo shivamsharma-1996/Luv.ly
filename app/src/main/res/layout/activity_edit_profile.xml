@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    tools:context=".ui.home.EditProfileActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/invisibleToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:padding="2dp"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/colorPrimary" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_semibold"
+                android:paddingStart="@dimen/_24sdp"
+                android:text="Edit Profile"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSizeLarge" />
+        </androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:id="@+id/fl_user_pic"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/bg_profile_pic_placeholder"
+            android:backgroundTint="@color/grey_200"
+            app:layout_constraintDimensionRatio="7:10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/_8sdp"
+                android:background="@drawable/bg_round_purple_gradient"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_edit"
+                app:tint="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/btn_change_profile_pic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:background="@drawable/bg_rect_gradient_primary"
+            android:fontFamily="@font/nunito_semibold"
+            android:padding="@dimen/_8sdp"
+            android:text="Change Profile Pic"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeMedium"
+            app:layout_constraintTop_toBottomOf="@+id/fl_user_pic" />
+
+        <TextView
+            android:id="@+id/tv_user_name_age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Shivam, 24"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeLarge"
+            android:layout_marginStart="@dimen/_16sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_change_profile_pic" />
+
+        <TextView
+            android:id="@+id/tv_user_gender_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="Male, India"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/textSizeMedium"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_name_age"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_name_age" />
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_user_gender_country"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_name_age"
+            app:tint="@color/textSecondary"/>
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/greyLightShadow"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_gender_country" />
+
+        <TextView
+            android:id="@+id/tv_user_interests"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="My Interests"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeLarge"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_name_age"
+            app:layout_constraintTop_toBottomOf="@+id/v1" />
+
+        <TextView
+            android:id="@+id/tv_edit_interests"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="EDIT"
+            android:gravity="center"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_user_interests"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_user_interests" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chips_user_interest"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_interests"
+            app:layout_constraintEnd_toEndOf="@+id/tv_edit_interests"
+            app:layout_constraintTop_toBottomOf="@+id/tv_user_interests"/>
+
+        <View
+            android:id="@+id/v2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/greyLightShadow"
+            app:layout_constraintTop_toBottomOf="@+id/chips_user_interest" />
+
+        <TextView
+            android:id="@+id/tv_label_instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:fontFamily="@font/nunito_semibold"
+            android:text="Instagram"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeLarge"
+            app:layout_constraintStart_toStartOf="@+id/tv_user_name_age"
+            app:layout_constraintTop_toBottomOf="@+id/v2" />
+
+        <TextView
+            android:id="@+id/btn_connect_instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:padding="2dp"
+            android:text="Connect Instagram"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:fontFamily="@font/nunito_bold"
+            app:layout_constraintStart_toStartOf="@+id/tv_label_instagram"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_label_instagram" />
+
+        <View
+            android:id="@+id/v3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@color/greyLightShadow"
+            app:layout_constraintTop_toBottomOf="@+id/btn_connect_instagram" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -40,8 +40,8 @@
         android:id="@+id/container_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        tools:layout="@layout/fragment_interest"
-        android:name="com.shivam.guftagoo.ui.onboarding.ProfilePicFragment"
+        tools:layout="@layout/fragment_phone"
+        android:name="com.shivam.guftagoo.ui.onboarding.InterestFragment"
         app:layout_constraintTop_toBottomOf="@+id/invisibleToolbar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

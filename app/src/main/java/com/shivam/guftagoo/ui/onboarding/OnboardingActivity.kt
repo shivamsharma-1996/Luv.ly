@@ -11,6 +11,5 @@ class OnboardingActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityOnboardingBinding.inflate(layoutInflater)
         setContentView(binding.root)
-    
     }
 }

@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.shivam.guftagoo"
-        minSdkVersion 22
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -62,8 +62,13 @@ dependencies {
 
     //lottie
     implementation 'com.airbnb.android:lottie:3.4.0'
+    implementation 'com.github.ismaeldivita:chip-navigation-bar:1.3.4'
 
     implementation 'com.chaos.view:pinview:1.4.4'
+
+    //RangeSeekbar
+    implementation 'it.sephiroth.android.library.rangeseekbar:rangeseekbar:1.1.0'
+
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

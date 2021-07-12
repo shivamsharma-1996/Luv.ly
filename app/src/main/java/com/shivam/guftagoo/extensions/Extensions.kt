@@ -3,10 +3,17 @@ package com.shivam.guftagoo.extensions
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.Window
+import android.view.WindowManager
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
+import com.shivam.guftagoo.R
+
 
 inline fun <reified T : Any> Context.launchActivity(
     options: Bundle? = null,
@@ -41,5 +48,13 @@ inline fun runOnMain(crossinline code: () -> Unit) {
     mainHandler.post {
         code()
     }
+}
+
+fun Window.changeStatusBarColor(color: Int, windowLightStatusBar: Boolean) {
+    //Pass value of windowLightStatusBar,
+    // white, if statusBarColor is light. ex: White
+    //black , if statusBarColor is dark. ex: Black
+    statusBarColor = color
+    WindowInsetsControllerCompat(this, this.decorView).isAppearanceLightStatusBars = windowLightStatusBar
 }
 

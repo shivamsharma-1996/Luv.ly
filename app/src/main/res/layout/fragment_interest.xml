@@ -57,12 +57,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_24sdp"
+        app:chipSpacing="4dp"
         android:layout_marginBottom="@dimen/_24sdp"
         app:layout_constraintEnd_toStartOf="@+id/gl_end"
         app:layout_constraintStart_toEndOf="@+id/gl_start"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.75"
-        app:layout_constraintBottom_toTopOf="@+id/btn_continue"/>
+        app:layout_constraintBottom_toTopOf="@+id/btn_continue">
+
+    </com.google.android.material.chip.ChipGroup>
 
     <TextView
         android:id="@+id/btn_continue"

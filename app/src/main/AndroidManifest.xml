@@ -11,19 +11,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Guftagoo">
-        <activity android:name=".ui.walkthrough.WelcomeActivity">
+        <activity android:name=".ui.home.SettingsActivity">
 
         </activity>
-        <activity android:name=".ui.onboarding.OnboardingActivity">
+        <activity android:name=".ui.home.EditProfileActivity">
+
+        </activity>
+        <activity android:name=".ui.home.HomeActivity">
+        </activity>
+        <activity android:name=".ui.walkthrough.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.call.CallingActivity">
-
-        </activity>
+        <activity android:name=".ui.onboarding.OnboardingActivity" />
+        <activity android:name=".ui.call.CallingActivity" />
     </application>
 
 </manifest>

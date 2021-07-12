@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.home.AccountFragment">
+
+  <com.github.abdularis.civ.AvatarImageView
+      android:id="@+id/iv_user_pic"
+      android:layout_width="@dimen/_120sdp"
+      android:layout_height="@dimen/_120sdp"
+      android:src="@drawable/ic_dummy_user"
+      app:view_state="IMAGE"
+      android:layout_marginTop="@dimen/_21sdp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Shivam Sharma, 24"
+        android:textColor="@color/black"
+        android:fontFamily="sans-serif-medium"
+        android:textSize="@dimen/textSizeXXXXLarge"
+        android:layout_marginTop="@dimen/_16sdp"
+        app:layout_constraintTop_toBottomOf="@+id/iv_user_pic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_user_country"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="India"
+        android:gravity="center"
+        android:fontFamily="sans-serif-medium"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:drawablePadding="@dimen/_4sdp"
+        android:textColor="@color/black"
+        android:textSize="@dimen/textSizeMedium2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabCustomSize="60dp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:src="@drawable/ic_settings"
+        app:tint="@color/grey_400"
+        app:backgroundTint="#F6F6F6"
+        android:outlineProvider="none"
+        app:layout_constraintHorizontal_bias="0.35"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fl_upload_media"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_country"
+        app:layout_constraintEnd_toStartOf="@+id/fl_upload_media"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="SETTINGS"
+      android:layout_marginTop="@dimen/_6sdp"
+      android:textColor="@color/grey_400"
+      android:fontFamily="@font/nunito_bold"
+      app:layout_constraintHorizontal_bias="0.35"
+      app:layout_constraintTop_toBottomOf="@+id/fab_settings"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@+id/fl_upload_media"
+      />
+
+  <FrameLayout
+      android:id="@+id/fl_upload_media"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintHorizontal_chainStyle="packed"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      android:layout_marginTop="@dimen/_40sdp"
+      app:layout_constraintTop_toBottomOf="@+id/tv_user_country">
+
+    <ImageView
+        android:id="@+id/fab_add_media"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:padding="@dimen/_15sdp"
+        android:src="@drawable/ic_camera_white"
+        android:background="@drawable/bg_round_purple_gradient"
+        />
+
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_add"
+        android:padding="5dp"
+        app:tint="#FFFF0000"
+        android:background="@drawable/bg_round_white"
+        android:layout_gravity="end|bottom"/>
+  </FrameLayout>
+
+  <TextView
+      android:id="@+id/tv_add_media"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="ADD MEDIA"
+      android:layout_marginTop="@dimen/_6sdp"
+      android:textColor="@color/grey_400"
+      android:fontFamily="@font/nunito_bold"
+      app:layout_constraintTop_toBottomOf="@+id/fl_upload_media"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+    />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fabCustomSize="60dp"
+        android:layout_marginBottom="@dimen/_12sdp"
+        android:src="@drawable/ic_edit"
+        app:tint="@color/grey_400"
+        android:outlineProvider="none"
+        app:backgroundTint="#F6F6F6"
+        app:layout_constraintHorizontal_bias="0.65"
+        android:backgroundTint="@color/lightGray"
+        app:layout_constraintStart_toEndOf="@+id/fl_upload_media"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fl_upload_media"
+        app:layout_constraintTop_toBottomOf="@+id/tv_user_country"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="EDIT INFO"
+      android:layout_marginTop="@dimen/_6sdp"
+      android:textColor="@color/grey_400"
+      android:fontFamily="@font/nunito_bold"
+      app:layout_constraintHorizontal_bias="0.65"
+      app:layout_constraintTop_toBottomOf="@+id/fab_edit_profile"
+      app:layout_constraintStart_toEndOf="@+id/fl_upload_media"
+      app:layout_constraintEnd_toEndOf="parent"/>
+
+  <View
+      android:id="@+id/divider"
+      android:layout_width="0dp"
+      android:layout_height="2dp"
+      app:layout_constraintTop_toBottomOf="@+id/tv_add_media"
+      android:layout_marginTop="@dimen/_12sdp"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      android:background="@color/lightGray" />
+
+  <androidx.recyclerview.widget.RecyclerView
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      tools:listitem="@layout/item_video_thumbnail"
+      tools:itemCount="10"
+      app:spanCount="3"
+      app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/divider"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

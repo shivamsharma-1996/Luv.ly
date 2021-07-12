@@ -7,7 +7,7 @@ import com.shivam.guftagoo.base.BaseActivity
 class WelcomeActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.fragment_account)
 
         setupUI()
     }
