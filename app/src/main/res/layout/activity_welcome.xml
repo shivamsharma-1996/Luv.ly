@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:foreground="@color/semi_transparent"
         android:scaleType="centerCrop"
-        android:src="@drawable/welcome" />
+        android:src="@drawable/ic_dummy_user" />
 
     <TextView
         android:id="@+id/app_name"
@@ -55,13 +55,15 @@
 
 
     <TextView
+        android:id="@+id/tv_terms_policy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/nunito_semibold"
         android:padding="@dimen/_8sdp"
         android:text="@string/agree_privacy_policy"
         android:textSize="@dimen/textSizeNormal"
-        app:layout_constraintBottom_toTopOf="@+id/btn_phone_signin"
+        android:layout_marginBottom="@dimen/_50sdp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_powered_by"
         app:layout_constraintEnd_toEndOf="@+id/btn_phone_signin"
         app:layout_constraintStart_toStartOf="@+id/btn_phone_signin" />
 
@@ -70,7 +72,7 @@
         style="@style/ripple"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_50sdp"
+        android:layout_marginBottom="@dimen/_6sdp"
         android:background="@drawable/bg_solid_round_primary"
         android:fontFamily="@font/nunito_bold"
         android:paddingTop="@dimen/_12sdp"
@@ -78,12 +80,12 @@
         android:text="@string/continue_with_phone_number"
         android:textAlignment="center"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toTopOf="@+id/tv_policy"
+        app:layout_constraintBottom_toTopOf="@+id/tv_terms_policy"
         app:layout_constraintEnd_toStartOf="@+id/gl_end"
         app:layout_constraintStart_toEndOf="@+id/gl_start" />
 
     <TextView
-        android:id="@+id/tv_policy"
+        android:id="@+id/tv_powered_by"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_12sdp"

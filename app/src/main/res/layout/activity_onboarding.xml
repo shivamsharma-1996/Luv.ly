@@ -7,6 +7,13 @@
     android:background="@color/white"
     tools:context=".ui.onboarding.OnboardingActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/invisibleToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"/>
+
     <ImageView
         android:id="@+id/iv_back"
         android:layout_width="24dp"
@@ -19,29 +26,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.appcompat.widget.Toolbar
-        app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/invisibleToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"/>
-
     <ProgressBar
         android:id="@+id/pb_steps"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:progress="50"
+        android:progress="1"
         android:minHeight="0dp"
         android:scaleY="1"
+        android:max="8"
         app:layout_constraintTop_toTopOf="parent"
         style="?android:attr/progressBarStyleHorizontal"/>
 
-    <fragment
-        android:id="@+id/container_frame"
+    <FrameLayout
+        android:id="@+id/containerFrame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:layout="@layout/fragment_phone"
-        android:name="com.shivam.guftagoo.ui.onboarding.InterestFragment"
         app:layout_constraintTop_toBottomOf="@+id/invisibleToolbar"
         app:layout_constraintBottom_toBottomOf="parent"/>
 

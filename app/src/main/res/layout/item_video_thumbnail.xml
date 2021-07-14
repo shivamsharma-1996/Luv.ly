@@ -5,16 +5,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:padding="1dp"
     >
 
     <ImageView
         android:id="@+id/iv_video_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@color/grey_200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintDimensionRatio="1:1"
-        tools:src="@drawable/ic_dummy_user"
         android:scaleType="centerCrop" />
 
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:tint="@color/textSecondary"
+        android:layout_margin="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/ic_camera_white"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,10 +30,24 @@
         android:background="@drawable/bg_light_gray_underlay"
         android:padding="@dimen/_12sdp"
         android:textSize="@dimen/textSizeMedium"
+        android:gravity="center"
+        android:textColor="@color/black"
         app:layout_constraintStart_toEndOf="@+id/gl_start"
         app:layout_constraintEnd_toStartOf="@+id/gl_end"
         app:layout_constraintTop_toBottomOf="@+id/label_dob"
         app:layout_constraintBottom_toTopOf="@+id/label_dob_disclaimer"/>
+
+    <DatePicker
+        android:id="@+id/dob_picker"
+        android:layout_width="0dp"
+        android:translationZ="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:datePickerMode = "calendar"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_dob"
+        app:layout_constraintEnd_toEndOf="@+id/tv_dob" />
 
     <TextView
         android:id="@+id/label_dob_disclaimer"

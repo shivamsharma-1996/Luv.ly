@@ -62,7 +62,7 @@
         android:imeOptions="actionDone"
         android:inputType="phone"
         android:maxLength="15"
-        android:text="8824965636"
+        android:hint="@string/hint_your_phone_number"
         android:padding="@dimen/_12sdp"
         android:textSize="@dimen/textSizeMedium"
         app:layout_constraintEnd_toStartOf="@+id/gl_end"

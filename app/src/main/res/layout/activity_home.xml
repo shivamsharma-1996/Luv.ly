@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/greyLightShadow"
-    tools:context=".ui.home.HomeActivity">
+    tools:context=".ui.home.HomeActivity_new">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -67,6 +67,17 @@
 
     </androidx.appcompat.widget.Toolbar>
 
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/home_bottom_menu"/>       />
+
+
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -75,6 +86,7 @@
         android:layout_marginBottom="@dimen/_4sdp"
         android:layout_marginStart="@dimen/_3sdp"
         android:layout_marginEnd="@dimen/_3sdp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/toolbar"
         app:layout_constraintBottom_toTopOf="@+id/home_bottom_menu">
 
@@ -124,7 +136,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/textSizeMedium2"
-                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
                 android:maxLines="1"
                 android:layout_marginStart="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_12sdp"

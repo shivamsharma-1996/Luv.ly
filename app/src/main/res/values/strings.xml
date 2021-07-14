@@ -15,4 +15,13 @@
     <string name="label_age_disclaimer">We need your date of birth so we can personalize the data as per age-group ☺️</string>
     <string name="btn_continue">Continue</string>
     <string name="label_photo_disclaimer">The photo in your profile must be a picture of you.</string>
+    <string name="title_activity_home_new">HomeActivity_new</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

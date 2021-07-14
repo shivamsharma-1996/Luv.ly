@@ -11,14 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Guftagoo">
-        <activity android:name=".ui.home.SettingsActivity">
-
-        </activity>
-        <activity android:name=".ui.home.EditProfileActivity">
-
-        </activity>
-        <activity android:name=".ui.home.HomeActivity">
-        </activity>
+        <activity
+            android:name=".ui.home.HomeActivity_new"
+            android:label="@string/title_activity_home_new"
+            android:theme="@style/Theme.Guftagoo.NoActionBar"></activity>
+        <activity android:name=".ui.home.SettingsActivity"></activity>
+        <activity android:name=".ui.home.EditProfileActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity"></activity>
         <activity android:name=".ui.walkthrough.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,8 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.onboarding.OnboardingActivity" />
-        <activity android:name=".ui.call.CallingActivity" />
+        <activity
+            android:name=".ui.onboarding.OnboardingActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".ui.call.CallingActivity"></activity>
     </application>
 
 </manifest>

@@ -11,4 +11,5 @@
     <dimen name="textSizeXXLarge">26sp</dimen>
     <dimen name="textSizeXXXLarge">28sp</dimen>
     <dimen name="textSizeXXXXLarge">30sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

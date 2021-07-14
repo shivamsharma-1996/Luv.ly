@@ -50,6 +50,13 @@
         app:layout_constraintBottom_toTopOf="@+id/btn_continue">
 
         <ImageView
+            android:id="@+id/iv_user_pic"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/iv_pic_anchor"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_add"

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.AccountFragment">
 
@@ -130,7 +131,6 @@
         android:outlineProvider="none"
         app:backgroundTint="#F6F6F6"
         app:layout_constraintHorizontal_bias="0.65"
-        android:backgroundTint="@color/lightGray"
         app:layout_constraintStart_toEndOf="@+id/fl_upload_media"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/fl_upload_media"
@@ -159,10 +159,10 @@
       android:background="@color/lightGray" />
 
   <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/rec_videos"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       tools:listitem="@layout/item_video_thumbnail"
-      tools:itemCount="10"
       app:spanCount="3"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
