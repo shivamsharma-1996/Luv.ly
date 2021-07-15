@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.onboarding.OnboardingFinishFragment">
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/check_anim"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:padding="@dimen/_16sdp"
+        app:lottie_autoPlay="true"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:lottie_loop="false"
+        app:layout_constraintVertical_bias="0.4"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/good_to_go"
+        app:lottie_fileName="checkmark.json" />
+
+    <TextView
+        android:id="@+id/good_to_go"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="You're ready to go!"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nunito_bold"
+        android:textSize="@dimen/textSizeXXXLarge"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_anim"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

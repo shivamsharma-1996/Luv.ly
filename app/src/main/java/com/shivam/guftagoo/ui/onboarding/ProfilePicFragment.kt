@@ -5,17 +5,26 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.shivam.guftagoo.R
+import com.shivam.guftagoo.base.BaseFragment
+import com.shivam.guftagoo.daos.UserDao
 import com.shivam.guftagoo.databinding.FragmentProfilePicBinding
+import com.shivam.guftagoo.extensions.log
+import com.shivam.guftagoo.extensions.replaceFragment
 import com.shivam.guftagoo.extensions.showSnack
+import com.shivam.guftagoo.models.SignInUser
+import com.shivam.guftagoo.models.User
 import com.shivam.guftagoo.ui.home.HomeActivity_new
 import kotlinx.android.synthetic.main.fragment_profile_pic.*
 
-class ProfilePicFragment private constructor(): Fragment() {
+
+class ProfilePicFragment private constructor(): BaseFragment() {
 
     private lateinit var binding: FragmentProfilePicBinding
     private val TAG = "Luv:ProfilePicFragment"
@@ -53,8 +62,45 @@ class ProfilePicFragment private constructor(): Fragment() {
             }
         }
         btn_continue.setOnClickListener{
-            requireContext().startActivity(Intent(activity, HomeActivity_new::class.java))
-            requireActivity().finish()
+            if(SignInUser.profilePic!=null){
+                log(
+                    "SingletonUser", SignInUser.countryCode +
+                            " " + SignInUser.phoneNumber + " " + SignInUser.name + " " + SignInUser.gender
+                            + " " + SignInUser.dob + " " + SignInUser.profilePic + " " + SignInUser.interestList
+                )
+                updateUI(Firebase.auth.currentUser)
+            }else{
+                showSnack("Please add your image first!")
+            }
+
+            /*updateUI(Firebase.auth.currentUser)
+            */
+        }
+    }
+
+    private fun updateUI(firebaseUser: FirebaseUser?) {
+        if(firebaseUser !=null){
+            val user = User()
+            user.countryCode = SignInUser.countryCode
+            user.name = SignInUser.name
+            user.phoneNumber = SignInUser.phoneNumber
+            user.uid = firebaseUser.uid
+            user.dob = SignInUser.dob
+            user.gender = SignInUser.gender
+            user.imageUrl = SignInUser.profilePic!!
+            user.interestList = SignInUser.interestList
+
+            val usersDao = UserDao()
+            usersDao.addUser(user){
+                (activity as OnboardingActivity)
+                    .replaceFragment(
+                        OnboardingFinishFragment.newInstance(),
+                        R.id.containerFrame,
+                        backStackTag = OtpFragment.javaClass.simpleName
+                    )
+            }
+        }else{
+            showSnack("Something went Wrong!")
         }
     }
 
@@ -68,13 +114,27 @@ class ProfilePicFragment private constructor(): Fragment() {
         when(requestCode) {
             CAMERA_REQUEST_CODE -> {
                 if (resultCode == Activity.RESULT_OK && data != null) {
-                    iv_user_pic.setImageBitmap(data.extras?.get("data") as Bitmap)
+                    val bitmap = data.extras?.get("data") as Bitmap
+                    iv_user_pic.setImageBitmap(bitmap)
                     iv_pic_anchor.setImageResource(R.drawable.ic_close)
+
+                    uploadProfilePicInStorage(bitmap)
                 }
             }
             else -> {
                 showSnack("Unrecognized request code")
             }
         }
+    }
+
+    private fun uploadProfilePicInStorage(bitmap: Bitmap){
+        Firebase.auth.currentUser?.let {
+            showLoading()
+            UserDao().uploadUserProfilePic(requireActivity(), bitmap, it.uid){ fileUrl ->
+                hideLoading()
+                SignInUser.profilePic = fileUrl
+            }
+        }
+
     }
 }

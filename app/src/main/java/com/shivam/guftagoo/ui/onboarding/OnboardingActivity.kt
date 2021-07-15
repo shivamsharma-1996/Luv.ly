@@ -1,23 +1,17 @@
 package com.shivam.guftagoo.ui.onboarding
 
-import android.content.IntentFilter
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import androidx.annotation.RequiresApi
-import com.google.android.gms.auth.api.phone.SmsRetriever
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.base.BaseActivity
 import com.shivam.guftagoo.databinding.ActivityOnboardingBinding
 import com.shivam.guftagoo.extensions.addFragment
 import com.shivam.guftagoo.extensions.popFragment
-import com.shivam.guftagoo.receivers.SmsBroadcastReceiver
 import kotlinx.android.synthetic.main.activity_onboarding.*
 
 class OnboardingActivity : BaseActivity() {
 
     private val phoneFragment by lazy { PhoneFragment.newInstance()}
-    private val PicFragment by lazy { ProfilePicFragment.newInstance()}
+    private val processDoneFragment by lazy {  OnboardingFinishFragment.newInstance()}
 
     private lateinit var binding: ActivityOnboardingBinding
 

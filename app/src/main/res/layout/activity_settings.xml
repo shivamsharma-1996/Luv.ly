@@ -253,6 +253,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="4dp"
+                style="@style/ripple"
                 app:cardUseCompatPadding="true"
                 android:layout_marginTop="@dimen/_2sdp"
                 app:layout_constraintTop_toBottomOf="@+id/tv_contacts_us">
@@ -266,7 +267,6 @@
                     android:paddingBottom="16dp"
                     android:paddingStart="12dp"
                     android:paddingEnd="12dp"
-                    style="@style/ripple"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -388,6 +388,26 @@
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:textColor="@color/white"
+                android:padding="@dimen/_8sdp"
+                android:gravity="center"
+                style="@style/ripple"
+                android:background="@drawable/bg_rect_gradient_primary"
+                android:drawableTint="@color/white"
+                android:fontFamily="@font/nunito_semibold"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/textSizeMedium"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:layout_marginStart="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_4sdp"
+                app:layout_constraintTop_toBottomOf="@+id/cv_legal"/>
+
+
+            <TextView
                 android:id="@+id/tv_app_logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -398,7 +418,7 @@
                 android:layout_marginTop="@dimen/_24sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cv_legal" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_logout" />
 
             <TextView
                 android:id="@+id/tv_app_version"

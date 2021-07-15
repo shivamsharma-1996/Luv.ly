@@ -47,6 +47,13 @@ dependencies {
     implementation 'com.github.abdularis:circularimageview:1.5'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
 
+    //coroutine
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$rootProject.coroutines"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$rootProject.coroutines"
+
+    /* coroutines support for firebase operations */
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
+
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.8.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.8.0'
@@ -74,6 +81,7 @@ dependencies {
     //Firebase
     implementation platform('com.google.firebase:firebase-bom:28.2.1')
     implementation 'com.google.firebase:firebase-auth-ktx'
+    implementation 'com.google.firebase:firebase-storage-ktx'
     implementation 'androidx.browser:browser:1.3.0'
 
     //phone selector
@@ -83,6 +91,7 @@ dependencies {
     implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    implementation 'com.google.firebase:firebase-firestore-ktx:23.0.1'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
