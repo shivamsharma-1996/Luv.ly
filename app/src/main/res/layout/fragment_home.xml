@@ -3,15 +3,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey_100"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.home.HomeFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/find_people_Loader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/check_anim"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_16sdp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_fileName="background_ripple.json" />
+
+        <com.github.abdularis.civ.AvatarImageView
+            android:id="@+id/iv_profile_pic"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            app:view_state="IMAGE"
+            app:strokeColor="@color/white"
+            app:strokeWidth="@dimen/_2sdp"
+            android:src="@drawable/ic_dummy_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/label_verify_number"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Finding people having similar interests..."
+            android:textColor="@color/textSecondary"
+            android:padding="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            app:layout_constraintWidth_default="wrap"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_pic"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+  
     <com.yuyakaido.android.cardstackview.CardStackView
         android:id="@+id/card_stack_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/item_card"
-        android:visibility="visible"
+        android:visibility="gone"
         android:clipToPadding="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

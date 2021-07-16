@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_onboarding.*
 class OnboardingActivity : BaseActivity() {
 
     private val phoneFragment by lazy { PhoneFragment.newInstance()}
-    private val processDoneFragment by lazy {  OnboardingFinishFragment.newInstance()}
+    private val processDoneFragment by lazy {  InterestFragment.newInstance()}
 
     private lateinit var binding: ActivityOnboardingBinding
 

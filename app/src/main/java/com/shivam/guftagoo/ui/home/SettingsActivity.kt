@@ -13,6 +13,8 @@ import com.shivam.guftagoo.databinding.ActivitySettingsBinding
 import com.shivam.guftagoo.extensions.delayedHandler
 import com.shivam.guftagoo.extensions.launchActivity
 import com.shivam.guftagoo.ui.walkthrough.WelcomeActivity
+import com.shivam.guftagoo.util.Constants
+import com.shivam.guftagoo.util.retrieveString
 
 class SettingsActivity : BaseActivity() {
     private lateinit var binding: ActivitySettingsBinding
@@ -26,10 +28,23 @@ class SettingsActivity : BaseActivity() {
         window.statusBarColor = getColor(R.color.black)
         WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 
+        populateUI()
         setupUI()
     }
 
+    private fun populateUI() {
+        val phoneNumber = String.format(
+            "%s-%s",
+            retrieveString(Constants.KEY_COUNTRY_CODE),
+            retrieveString(Constants.KEY_PHONE_NUMBER)
+        )
+        binding.tvAccountNumber.text = phoneNumber
+    }
+
     private fun setupUI() {
+        binding.ivBack.setOnClickListener{
+            finish()
+        }
         binding.tvLogout.setOnClickListener{
             Firebase.auth.signOut()
             showLoading()

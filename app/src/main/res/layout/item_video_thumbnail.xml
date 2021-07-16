@@ -12,6 +12,7 @@
         android:id="@+id/iv_video_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:foreground="#48000000"
         android:background="@color/grey_200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -21,9 +22,11 @@
     <ImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:tint="@color/textSecondary"
-        android:layout_margin="@dimen/_8sdp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="4dp"
+        android:layout_margin="@dimen/_6sdp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@drawable/ic_camera_white"/>
+        android:src="@drawable/ic_play"
+        app:tint="@color/white"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

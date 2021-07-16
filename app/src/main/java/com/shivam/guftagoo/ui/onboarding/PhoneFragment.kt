@@ -4,6 +4,8 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.IntentSender
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,7 @@ import com.shivam.guftagoo.R
 import com.shivam.guftagoo.base.BaseFragment
 import com.shivam.guftagoo.daos.SignInDao
 import com.shivam.guftagoo.databinding.FragmentPhoneBinding
+import com.shivam.guftagoo.extensions.enable
 import com.shivam.guftagoo.extensions.log
 import com.shivam.guftagoo.extensions.replaceFragment
 import com.shivam.guftagoo.extensions.showSnack
@@ -61,6 +64,7 @@ class PhoneFragment private constructor() : BaseFragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUI()
+        setTextWatcher()
         setUpPhoneAuthCallback()
     }
 
@@ -69,6 +73,24 @@ class PhoneFragment private constructor() : BaseFragment(){
             onContinueClicked()
         }
     }
+    private fun setTextWatcher() {
+        binding.etPhoneNumber.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence, i: Int, i1: Int, i2: Int) {
+                if (s.isNotEmpty()) {
+                    binding.btnContinue.enable(requireActivity(), enable = true)
+                }else{
+                    binding.btnContinue.enable(requireActivity(), enable = false)
+                }
+            }
+
+            override fun afterTextChanged(editable: Editable) {}
+        })
+    }
+
 
     override fun onStart() {
         super.onStart()

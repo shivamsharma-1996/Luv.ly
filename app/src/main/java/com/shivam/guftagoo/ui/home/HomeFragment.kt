@@ -1,6 +1,7 @@
 package com.shivam.guftagoo.ui.home
 
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.DiffUtil
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.databinding.FragmentHomeBinding
+import com.shivam.guftagoo.extensions.delayedHandler
 import com.shivam.guftagoo.extensions.showSnack
 import com.shivam.guftagoo.models.ItemModel
 import com.yuyakaido.android.cardstackview.*
@@ -31,7 +33,6 @@ class HomeFragment private constructor(): Fragment() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -44,7 +45,12 @@ class HomeFragment private constructor(): Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
+
+        Handler().delayedHandler(4000){
+            binding.findPeopleLoader.visibility = View.GONE
+            binding.cardStackView.visibility = View.VISIBLE
+        }
         setupUI()
     }
 
@@ -113,7 +119,7 @@ class HomeFragment private constructor(): Fragment() {
                 .build()
             manager!!.setSwipeAnimationSetting(setting)
             card_stack_view.swipe()
-            showSnack("Coming Soon this feature!")
+            showSnack("Coming Soon, till then use swipe")
         }
         card_stack_view.layoutManager = manager
         card_stack_view.adapter = adapter
@@ -144,5 +150,6 @@ class HomeFragment private constructor(): Fragment() {
         items.add(ItemModel(R.drawable.sample5, "Marmut", "25", "Hutan"))
         return items
     }
+
 
 }

@@ -84,7 +84,6 @@
         android:textAlignment="center"
         android:textAllCaps="false"
         android:padding="@dimen/_10sdp"
-        android:alpha="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/gl_end"
         app:layout_constraintStart_toEndOf="@+id/gl_start" />

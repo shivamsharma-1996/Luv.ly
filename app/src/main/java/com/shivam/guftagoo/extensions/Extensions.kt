@@ -123,4 +123,3 @@ fun Fragment.isActive(): Boolean = !(isRemoving || isDetached)
 fun Handler.delayedHandler(delay: Int, runnable: () -> Unit) {
     this.postDelayed(runnable, delay.toLong())
 }
-

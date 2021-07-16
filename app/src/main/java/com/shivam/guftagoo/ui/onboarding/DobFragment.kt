@@ -2,12 +2,15 @@ package com.shivam.guftagoo.ui.onboarding
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.databinding.FragmentDobBinding
+import com.shivam.guftagoo.extensions.enable
 import com.shivam.guftagoo.extensions.replaceFragment
 import com.shivam.guftagoo.extensions.showSnack
 import com.shivam.guftagoo.models.SignInUser
@@ -57,6 +60,8 @@ class DobFragment private constructor(): Fragment() {
                     isDobSelected = true
 
                     tv_dob.text = dob
+
+                    binding.btnContinue.enable(requireActivity(), enable = true)
                 }
 
             DatePickerDialog(
@@ -71,6 +76,7 @@ class DobFragment private constructor(): Fragment() {
             onContinueClicked()
         }
     }
+
 
     private fun onContinueClicked() {
         if(isDobSelected){

@@ -24,17 +24,11 @@ class CallingActivity : AppCompatActivity()/*, View.OnClickListener, View.OnTouc
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_account)
 
-        dummyCode()
 
      /*   playVideo()
         animateCallPickUpController()
 
         fab_pick_up.setOnTouchListener(this)*/
-    }
-
-    private fun dummyCode() {
-        rec_videos.layoutManager = GridLayoutManager(this, 3)
-        rec_videos.adapter = UserMediaAdapter()
     }
 
     /* private fun animateCallPickUpController() {

@@ -2,21 +2,16 @@ package com.shivam.guftagoo.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import android.view.View
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.base.BaseActivity
 import com.shivam.guftagoo.databinding.ActivityHomeBinding
-import com.shivam.guftagoo.extensions.addFragment
 import com.shivam.guftagoo.extensions.replaceFragment
 import com.shivam.guftagoo.ui.walkthrough.WelcomeActivity
-import com.yuyakaido.android.cardstackview.*
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity_new : BaseActivity() {
@@ -51,24 +46,27 @@ class HomeActivity_new : BaseActivity() {
         super.onStart()
 
         home_bottom_menu.setOnNavigationItemSelectedListener { item ->
-            var selectedFragment: Fragment? = null
-            when (item.itemId) {
-                R.id.account ->{
-                    selectedFragment = AccountFragment.newInstance()
-                }
-                R.id.home ->{
-                    selectedFragment = HomeFragment.newInstance()
+            var destinationFragment: Fragment? = null
+            if(home_bottom_menu.selectedItemId == item.itemId){
+                 false
+            }else{
+                when (item.itemId) {
+                    R.id.account ->{
+                        destinationFragment = AccountFragment.newInstance()
+                    }
+                    R.id.home ->{
+                        destinationFragment = HomeFragment.newInstance()
 
-                }
-                R.id.superlike -> {
-                    selectedFragment = HomeFragment.newInstance()
+                    }
+                    R.id.superlike -> {
+                        destinationFragment = HomeFragment.newInstance()
 
+                    }
                 }
+                replaceFragment(destinationFragment!!, R.id.fragment_container)
+
+                true
             }
-            replaceFragment(selectedFragment!!, R.id.fragment_container)
-
-            true
         }
     }
-
 }

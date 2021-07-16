@@ -2,6 +2,7 @@ package com.shivam.guftagoo.util
 
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
+import java.util.*
 import java.util.regex.Pattern
 
 object AppUtil {
@@ -17,6 +18,18 @@ object AppUtil {
     fun hideKeyboard(context: Context) {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0) // hide
+    }
+
+    fun getAge(year: Int, month: Int, day: Int): String {
+        val dob: Calendar = Calendar.getInstance()
+        val today: Calendar = Calendar.getInstance()
+        dob.set(year, month, day)
+        var age: Int = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR)
+        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
+            age--
+        }
+        val ageInt = age
+        return ageInt.toString()
     }
 }
 
