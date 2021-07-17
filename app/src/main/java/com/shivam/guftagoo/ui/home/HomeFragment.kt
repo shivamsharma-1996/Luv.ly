@@ -138,9 +138,6 @@ class HomeFragment private constructor(): Fragment() {
 
     private fun addList(): ArrayList<ItemModel> {
         val items: ArrayList<ItemModel> = ArrayList()
-        items.add(ItemModel(R.drawable.sample7, "Markonah", "24", "Jember"))
-        items.add(ItemModel(R.drawable.sample6, "Marpuah", "20", "Malang"))
-        items.add(ItemModel(R.drawable.ic_dummy_user, "Sukijah", "27", "Jonggol"))
         items.add(ItemModel(R.drawable.sample4, "Markobar", "19", "Bandung"))
         items.add(ItemModel(R.drawable.sample5, "Marmut", "25", "Hutan"))
         items.add(ItemModel(R.drawable.sample1, "Markonah", "24", "Jember"))
@@ -148,6 +145,9 @@ class HomeFragment private constructor(): Fragment() {
         items.add(ItemModel(R.drawable.sample3, "Sukijah", "27", "Jonggol"))
         items.add(ItemModel(R.drawable.sample4, "Markobar", "19", "Bandung"))
         items.add(ItemModel(R.drawable.sample5, "Marmut", "25", "Hutan"))
+        items.add(ItemModel(R.drawable.sample7, "Markonah", "24", "Jember"))
+        items.add(ItemModel(R.drawable.sample6, "Marpuah", "20", "Malang"))
+        items.add(ItemModel(R.drawable.ic_dummy_user, "Sukijah", "27", "Jonggol"))
         return items
     }
 
