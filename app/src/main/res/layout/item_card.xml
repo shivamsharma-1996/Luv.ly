@@ -33,7 +33,7 @@
             android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Shivam Sharma,"
+            android:text=""
             android:textSize="@dimen/_24sdp"
             android:fontFamily="@font/nunito_bold"
             android:textColor="@color/white"
@@ -46,9 +46,10 @@
             app:layout_constraintEnd_toEndOf="@+id/chips_user_interest"/>
 
         <TextView
+            android:id="@+id/tv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="24"
+            android:text=""
             android:textSize="@dimen/_22sdp"
             android:layout_marginStart="1dp"
             app:layout_constraintHorizontal_bias="0"
@@ -93,7 +94,7 @@
             app:tint="@color/green"
             app:fabCustomSize="60dp"
             app:backgroundTint="@color/green"
-            android:src="@drawable/ic_heart"
+            android:src="@drawable/ic_call"
             app:borderWidth="1dp"
             android:outlineProvider="none"
             android:backgroundTint="@android:color/transparent"

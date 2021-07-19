@@ -15,23 +15,23 @@ import kotlinx.android.synthetic.main.fragment_account.*
 import java.util.*
 
 
-class CallingActivity : AppCompatActivity()/*, View.OnClickListener, View.OnTouchListener */{
+class CallingActivity : AppCompatActivity(), View.OnClickListener, View.OnTouchListener {
     var dX = 0f
     var dY = 0f
     var lastAction = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_account)
+        setContentView(R.layout.activity_calling)
 
 
-     /*   playVideo()
+        playVideo()
         animateCallPickUpController()
 
-        fab_pick_up.setOnTouchListener(this)*/
+        fab_pick_up.setOnTouchListener(this)
     }
 
-    /* private fun animateCallPickUpController() {
+     private fun animateCallPickUpController() {
          val animShake = AnimationUtils.loadAnimation(this, R.anim.vibrate)
          fab_pick_up.startAnimation(animShake)
 
@@ -67,7 +67,6 @@ class CallingActivity : AppCompatActivity()/*, View.OnClickListener, View.OnTouc
          })
      }
 
-
      override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
          when (event!!.actionMasked) {
              MotionEvent.ACTION_DOWN -> {
@@ -97,5 +96,5 @@ class CallingActivity : AppCompatActivity()/*, View.OnClickListener, View.OnTouc
 
      override fun onTouch(v: View?, event: MotionEvent?): Boolean {
          return false
-     }*/
+     }
 }

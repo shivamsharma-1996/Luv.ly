@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeSubSubMini">8sp</dimen>
+    <dimen name="textSizeSubMini">10sp</dimen>
+    <dimen name="textSizeMini">12sp</dimen>
+    <dimen name="textSizeNormal">14sp</dimen>
+    <dimen name="textSizeMedium">16sp</dimen>
+    <dimen name="textSizeMedium2">18sp</dimen>
+    <dimen name="textSizeLarge">21sp</dimen>
+    <dimen name="textSizeXLarge">24sp</dimen>
+    <dimen name="textSizeXXLarge">26sp</dimen>
+    <dimen name="textSizeXXXLarge">28sp</dimen>
+    <dimen name="textSizeXXXXLarge">30sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="pv_pin_view_item_size">48dp</dimen>
+    <dimen name="pv_pin_view_item_spacing">5dp</dimen>
+    <dimen name="pv_pin_view_item_line_width">2dp</dimen>
+    <dimen name="pv_pin_view_cursor_width">2dp</dimen>
+</resources>

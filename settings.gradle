@@ -1,2 +1,3 @@
+include ':patchcalling'
 include ':app'
 rootProject.name = "Guftagoo"

@@ -8,5 +8,6 @@ data class User(
     var name: String = "",
     var dob: String = "",
     var gender: String = "",
+    var videos: List<String> = ArrayList(),
     var interestList:  List<String> = ArrayList()
 )

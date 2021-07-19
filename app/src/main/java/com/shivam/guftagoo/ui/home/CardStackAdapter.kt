@@ -10,15 +10,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.shivam.guftagoo.R
-import com.shivam.guftagoo.models.ItemModel
+import com.shivam.guftagoo.models.User
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CardStackAdapter(items: ArrayList<ItemModel>, val swipeListener: ()->Unit): RecyclerView.Adapter<CardStackAdapter.CardStackHolder>() {
-    private var items: ArrayList<ItemModel> = ArrayList()
+class CardStackAdapter(items: MutableList<User>, val swipeListener: (User?)->Unit): RecyclerView.Adapter<CardStackAdapter.CardStackHolder>() {
+    private var items: MutableList<User> = ArrayList()
 
     init {
         this.items = items
@@ -30,6 +32,7 @@ class CardStackAdapter(items: ArrayList<ItemModel>, val swipeListener: ()->Unit)
 
         val imageView: ImageView = itemView.findViewById((R.id.item_image))
         val tv_user_name: TextView = itemView.findViewById((R.id.tv_user_name))
+        val tvAge: TextView = itemView.findViewById((R.id.tv_age))
         val name: TextView = itemView.findViewById((R.id.item_name))
         val city: TextView = itemView.findViewById((R.id.item_city))
         val interests: ChipGroup = itemView.findViewById(R.id.chips_user_interest)
@@ -37,39 +40,25 @@ class CardStackAdapter(items: ArrayList<ItemModel>, val swipeListener: ()->Unit)
         val fab_reject = itemView.findViewById<View>((R.id.fab_reject))
         val fab_accept = itemView.findViewById<View>((R.id.fab_accept))
 
-        fun setData(data: ItemModel) {
+        fun setData(data: User) {
             Glide.with(itemView.context).
-            load(data.image).
+            load(data.imageUrl).
             into(imageView)
 
-            tv_user_name.text = data.name + ", " + data.usia
-//            name.text = data.name
-//            city.text = data.kota
+            val items: List<String> = data.dob.split("-")
+            val day = items[0]
+            val month= items[1]
+            val year = items[2]
+            tv_user_name.text = data.name + ", "
+            tvAge.text = "" + (Calendar.getInstance().get(Calendar.YEAR) - year.toInt())
 
-            val categoryChipList: List<String> = listOf(
-                "printing",
-                "code",
-                "chess",
-                "cook",
-                "bloggin",
-                "graphic",
-                "Graphic",
-                "stocks",
-                "reading",
-                "sleep",
-                "art",
-                "hacking",
-                "riding",
-                "travelling",
-                "coffee"
-            )
-            Collections.shuffle(categoryChipList);
+            val categoryChipList: List<String> = ArrayList()
+            Collections.shuffle(categoryChipList)
 
-
-            for (record in categoryChipList.subList(0, 4)) {
+            for (record in data.interestList.takeLast(3)) {
                 val mChip =
                     LayoutInflater.from(itemView.context).inflate(R.layout.item_list_category, null, false) as Chip
-                mChip.text = record.toString()
+                mChip.text = record
                 mChip.isChecked = true
 
                 val paddingDp = TypedValue.applyDimension(
@@ -96,10 +85,10 @@ class CardStackAdapter(items: ArrayList<ItemModel>, val swipeListener: ()->Unit)
         holder.setData(items!![position])
 
         holder.fab_reject.setOnClickListener{
-            swipeListener()
+            swipeListener(null)
         }
         holder.fab_accept.setOnClickListener{
-            swipeListener()
+            swipeListener(items[position])
         }
     }
 
@@ -108,11 +97,11 @@ class CardStackAdapter(items: ArrayList<ItemModel>, val swipeListener: ()->Unit)
     }
 
 
-    fun getItems(): ArrayList<ItemModel> {
+    fun getItems(): MutableList<User> {
         return items
     }
 
-    fun setItems(items1: ArrayList<ItemModel>) {
+    fun setItems(items1: ArrayList<User>) {
         items = items1
     }
 }

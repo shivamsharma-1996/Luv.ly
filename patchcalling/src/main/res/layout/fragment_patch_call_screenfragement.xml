@@ -1,0 +1,289 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    xmlns:myPrefix="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_callscreen_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_incomingcolor"
+    tools:context="com.patch.patchcalling.fragments.PatchCallscreenFragment">
+
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:visibility="gone" />
+
+    <com.patch.patchcalling.custom.CustomTextView
+        android:id="@+id/tv_callScreen_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:gravity="center"
+        android:padding="@dimen/_6sdp"
+        android:text="Connecting.."
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        myPrefix:customFont="@string/OpenSans_Reguler" />
+
+    <ImageView
+        android:id="@+id/iv_callScreen_logo"
+        android:layout_width="@dimen/_175sdp"
+        android:layout_height="@dimen/_80sdp"
+        android:padding="@dimen/_6sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_callScreen_label" />
+
+    <com.patch.patchcalling.custom.CustomTextView
+        android:id="@+id/tv_context"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="21sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        app:layout_constraintVertical_bias="0.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_chainStyle="spread"
+        app:layout_constraintBottom_toTopOf="@+id/ll_hold"
+        app:layout_constraintTop_toBottomOf="@id/iv_callScreen_logo"
+        myPrefix:customFont="@string/OpenSans_Reguler" />
+
+    <Chronometer
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:text="00:45"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tv_networkLatency"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_context"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <com.patch.patchcalling.custom.CustomTextView
+        android:id="@+id/tv_networkLatency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:text="Poor Network"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone"
+        app:layout_constraintVertical_bias="0.25"
+        myPrefix:customFont="@string/OpenSans_Reguler"
+        app:layout_constraintTop_toBottomOf="@+id/tv_context"
+        app:layout_constraintBottom_toTopOf="@+id/ll_hold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+    <ImageView
+        android:id="@+id/iv_banner"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/_16sdp"
+        android:layout_marginEnd="@dimen/_16sdp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_networkLatency"
+        app:layout_constraintBottom_toTopOf="@+id/tv_hold_state"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        app:layout_constraintWidth_percent="0.75" />
+
+
+    <com.patch.patchcalling.custom.CustomTextView
+        android:id="@+id/tv_hold_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:text="Call is on hold"
+        android:textColor="@android:color/white"
+        android:textSize="21sp"
+        app:layout_constraintVertical_bias="0.9"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_networkLatency"
+        app:layout_constraintBottom_toTopOf="@+id/ll_hold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        myPrefix:customFont="@string/OpenSans_Reguler" />
+
+    <LinearLayout
+        android:id="@+id/ll_hold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/ll_footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/iv_hold"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:src="@drawable/ic_hold_inactive"
+            android:tint="@android:color/white" />
+
+        <com.patch.patchcalling.custom.CustomTextView
+            android:id="@+id/tv_hold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/hold"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_10sdp"
+            myPrefix:customFont="@string/OpenSans_Reguler" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_footer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tv_poweredBy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:id="@+id/ll_mute"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_mute"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/decline"
+                android:src="@drawable/mute"
+                android:tint="@android:color/white" />
+
+            <com.patch.patchcalling.custom.CustomTextView
+                android:id="@+id/tv_mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/mute"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                myPrefix:customFont="@string/OpenSans_Reguler" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_hangup"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:contentDescription="@string/decline"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/disconnect" />
+
+            <com.patch.patchcalling.custom.CustomTextView
+                android:id="@+id/tv_disconnect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/disconnect"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                myPrefix:customFont="@string/OpenSans_Reguler" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_speaker"
+            android:layout_width="0dp"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_speaker"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center"
+                android:contentDescription="@string/decline"
+                android:src="@drawable/speaker"
+                android:tint="@android:color/white" />
+
+            <com.patch.patchcalling.custom.CustomTextView
+                android:id="@+id/tv_speaker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/speaker"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/_10sdp"
+                myPrefix:customFont="@string/OpenSans_Reguler" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.patch.patchcalling.custom.CustomTextView
+        android:id="@+id/tv_poweredBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:gravity="center"
+        android:text="@string/poweredBy"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/_10sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        myPrefix:customFont="@string/OpenSans_Reguler" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

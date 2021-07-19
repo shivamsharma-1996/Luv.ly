@@ -3,27 +3,27 @@ package com.shivam.guftagoo.daos
 import android.app.Activity
 import android.graphics.Bitmap
 import android.net.Uri
-import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldPath
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.ktx.component1
+import com.google.firebase.storage.ktx.component2
 import com.google.firebase.storage.ktx.storage
 import com.shivam.guftagoo.extensions.log
 import com.shivam.guftagoo.extensions.showSnack
 import com.shivam.guftagoo.models.User
+import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
-import com.google.firebase.storage.ktx.component1
-import com.google.firebase.storage.ktx.component2
-import kotlinx.coroutines.*
+
 
 class UserDao {
     private val db = FirebaseFirestore.getInstance()
     private val storageRef = Firebase.storage.reference
     private val userCollection = db.collection("users")
+    var washingtonRef = db.collection("cities").document("DC")
 
     fun addUser(user: User, onCompletionHandler: () -> Unit){
         user?.let {
@@ -34,8 +34,34 @@ class UserDao {
         }
     }
 
-    fun getUserById(uid: String): Task<DocumentSnapshot> {
-        return userCollection.document(uid).get()
+    fun addVideosToUserModel(videoUrlList: List<String> ){
+        GlobalScope.launch(Dispatchers.IO) {
+            userCollection.document(Firebase.auth.currentUser!!.uid).update("videos", videoUrlList)
+                .addOnCompleteListener{ task ->
+                    if(task.isSuccessful){
+                        log("addVideosToUserModel", "success!")
+                    }else{
+                        log("addVideosToUserModel", "failure!")
+                    }
+                }
+            }
+    }
+
+    fun fetchUsers(
+        onCompletionHandler: (MutableList<User>?, error: String?) -> Unit
+    ) {
+        GlobalScope.launch {
+            userCollection.get().addOnCompleteListener{ task ->
+                if(task.isSuccessful){
+                    if (task.result != null) {
+                        val userList = task.result!!.toObjects(User::class.java)!!
+                        onCompletionHandler(userList, null)
+                    }
+                }else{
+                    onCompletionHandler(null, task.exception!!.message)
+                }
+            }
+        }
     }
 
     fun uploadUserProfilePic(
@@ -88,6 +114,7 @@ class UserDao {
                         }.forEach{
                             it.await()
                         }
+                        addVideosToUserModel(videoUriList)
                         onCompletionHandler(videoUriList, null)
                     }
                 }
@@ -106,5 +133,7 @@ class UserDao {
             }*/
         }
     }
+
+
 
 }

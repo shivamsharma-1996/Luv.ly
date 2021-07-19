@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomTextView">
+        <attr name="customFont" format="string">
+
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PinViewTheme">
+        <attr name="pinViewStyle" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="PatchPinView">
+        <attr name="itemCount1" format="integer" />
+        <attr name="itemWidth1" format="dimension" />
+        <attr name="itemHeight1" format="dimension" />
+        <attr name="itemRadius1" format="dimension" />
+        <attr name="itemSpacing1" format="dimension" />
+        <attr name="lineWidth1" format="dimension" />
+        <attr name="lineColor1" format="reference|color" />
+        <attr name="viewType1" format="enum">
+            <enum name="rectangle" value="0" />
+            <enum name="line" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+        <attr name="android:cursorVisible" />
+        <attr name="cursorWidth1" format="dimension" />
+        <attr name="cursorColor1" format="reference|color" />
+        <attr name="android:itemBackground" />
+        <attr name="hideLineWhenFilled1" format="boolean" />
+    </declare-styleable>
+
+
+    <declare-styleable name="ScratchCard">
+        <attr
+            name="scratchDrawable"
+            format="reference|color" />
+        <attr
+            name="scratchWidth"
+            format="dimension" />
+    </declare-styleable>
+</resources>

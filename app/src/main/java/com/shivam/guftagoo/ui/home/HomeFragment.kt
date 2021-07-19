@@ -1,31 +1,44 @@
 package com.shivam.guftagoo.ui.home
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DiffUtil
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import com.patch.patchcalling.PatchResponseCodes
+import com.patch.patchcalling.interfaces.OutgoingCallResponse
+import com.patch.patchcalling.javaclasses.PatchSDK
 import com.shivam.guftagoo.R
+import com.shivam.guftagoo.daos.UserDao
 import com.shivam.guftagoo.databinding.FragmentHomeBinding
 import com.shivam.guftagoo.extensions.delayedHandler
+import com.shivam.guftagoo.extensions.runOnMain
 import com.shivam.guftagoo.extensions.showSnack
 import com.shivam.guftagoo.models.ItemModel
+import com.shivam.guftagoo.models.User
 import com.yuyakaido.android.cardstackview.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import org.json.JSONObject
 
 class HomeFragment private constructor(): Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private var manager : CardStackLayoutManager? =null
     private var adapter: CardStackAdapter? = null
     private val TAG = "HomeFragment"
-    
+
+    private val MICROPHONE_PERMISSION_CODE = 301
+
     companion object {
         @JvmStatic
         fun newInstance() = HomeFragment()
@@ -46,11 +59,6 @@ class HomeFragment private constructor(): Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
-        Handler().delayedHandler(4000){
-            binding.findPeopleLoader.visibility = View.GONE
-            binding.cardStackView.visibility = View.VISIBLE
-        }
         setupUI()
     }
 
@@ -76,10 +84,10 @@ class HomeFragment private constructor(): Fragment() {
                     Toast.makeText(context, "Direction Bottom", Toast.LENGTH_SHORT).show()
                 }
 
-                // Paginating
+                /*// Paginating
                 if (manager!!.topPosition == adapter!!.itemCount - 5) {
                     paginate()
-                }
+                }*/
             }
 
             override fun onCardRewound() {
@@ -111,29 +119,97 @@ class HomeFragment private constructor(): Fragment() {
         manager!!.setCanScrollHorizontal(true)
         manager!!.setSwipeableMethod(SwipeableMethod.Manual)
         manager!!.setOverlayInterpolator(LinearInterpolator())
-        adapter = CardStackAdapter(addList()){
-            val setting = SwipeAnimationSetting.Builder()
-                .setDirection(Direction.Right)
-                .setDuration(Duration.Normal.duration)
-                .setInterpolator(AccelerateInterpolator())
-                .build()
-            manager!!.setSwipeAnimationSetting(setting)
-            card_stack_view.swipe()
-            showSnack("Coming Soon, till then use swipe")
-        }
-        card_stack_view.layoutManager = manager
-        card_stack_view.adapter = adapter
         card_stack_view.itemAnimator = DefaultItemAnimator()
+
+        fetchUsers()
     }
 
 
-    private fun paginate() {
-        val old: ArrayList<ItemModel> = adapter!!.getItems()
-        val baru: ArrayList<ItemModel> = ArrayList(addList())
+    /*private fun paginate() {
+        val old: MutableList<User> = adapter!!.getItems()
+        val baru: MutableList<User> = MutableList(addList())
         val callback = CardStackCallback(old, baru)
         val hasil = DiffUtil.calculateDiff(callback)
         adapter!!.setItems(baru)
         hasil.dispatchUpdatesTo(adapter!!)
+    }*/
+
+    private fun fetchUsers(){
+        val userDao = UserDao()
+
+        userDao.fetchUsers{ userList, error ->
+            if(userList!=null && userList.isNotEmpty()){
+                adapter = CardStackAdapter(userList.filter {  it.uid != Firebase.auth.uid}
+                    .toMutableList()){ user ->
+                    if(user!=null && user.videos.isNotEmpty()){
+                        getMicrophonePermission {
+                            makeVoIPCall(user)
+                        }
+                    }else{
+                        showSnack("Add atleast one video to your profile!")
+                    }
+                }
+                card_stack_view.layoutManager = manager
+                card_stack_view.adapter = adapter
+            }else{
+                showSnack(error!!)
+            }
+            binding.findPeopleLoader.visibility = View.GONE
+            binding.cardStackView.visibility = View.VISIBLE
+        }
+    }
+
+    private fun makeVoIPCall(user: User) {
+        val options = JSONObject()
+        if (PatchSDK.isGoodToGo()) {
+            //options.put("cli", cli);
+            PatchSDK.getInstance().call(
+                context,
+                user.uid,
+                user.videos[0],
+                options,
+                object : OutgoingCallResponse {
+                    override fun callStatus(reason: Int) {
+                        Log.d("Patch", "reason is$reason")
+                        Toast.makeText(context, "reason is$reason", Toast.LENGTH_LONG)
+                            .show()
+                    }
+
+                    override fun onSuccess(response: Int) {
+                        Log.d("Patch", response.toString())
+                        Toast.makeText(context, "response is$response", Toast.LENGTH_LONG)
+                            .show()
+                    }
+
+                    override fun onFailure(error: Int) {
+                        Toast.makeText(context, "error is$error", Toast.LENGTH_LONG).show()
+                        runOnMain {
+                            if (error == PatchResponseCodes.OutgoingCallCallback.OnFailure.ERR_MICROPHONE_PERMISSION_NOT_GRANTED) {
+                                Toast.makeText(
+                                    context,
+                                    "Micrphone permission needed. Enable permission from app settings",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else if (error == PatchResponseCodes.OutgoingCallCallback.OnFailure.ERR_CONTACT_NOT_REACHABLE) {
+                                Toast.makeText(
+                                    context,
+                                    "Cuid is not reachable",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            } else if (error == PatchResponseCodes.OutgoingCallCallback.OnFailure.ERR_BAD_NETWORK) {
+                                Toast.makeText(context, "Bad network", Toast.LENGTH_LONG)
+                                    .show()
+                            } else if (error == PatchResponseCodes.OutgoingCallCallback.OnFailure.ERR_SOMETHING_WENT_WRONG) {
+                                Toast.makeText(
+                                    context,
+                                    "something went wrong",
+                                    Toast.LENGTH_LONG
+                                ).show()
+                            }
+                        }
+                    }
+                })
+        }
     }
 
     private fun addList(): ArrayList<ItemModel> {
@@ -151,5 +227,24 @@ class HomeFragment private constructor(): Fragment() {
         return items
     }
 
+    private fun getMicrophonePermission(onGrantedListener: () -> Unit) {
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) ==
+            PackageManager.PERMISSION_DENIED
+        ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(Manifest.permission.CAMERA),
+                MICROPHONE_PERMISSION_CODE
+            )
+        }else{
+            onGrantedListener
+        }
+    }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+    }
 }
