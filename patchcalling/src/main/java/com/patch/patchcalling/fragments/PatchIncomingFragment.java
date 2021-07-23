@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.VideoView;
 
@@ -43,6 +44,7 @@ import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.ui.StyledPlayerView;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 import com.patch.patchcalling.R;
 import com.patch.patchcalling.broadcastreciever.CallNotificationActionReceiver;
@@ -85,7 +87,8 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
     private long playbackPosition = 0;
     private String mp4Url = "https://html5demos.com/assets/dizzy.mp4";
 
-    private ImageView ivDecline, ivAccept, ivLogo;
+    private ImageView ivDecline, ivLogo;
+    private RelativeLayout ivAccept;
     static JSONObject callDetails;
     String callContext, fromCuid, toCuid;
     TextView tvContext, tvCallScreenLabel, tvDecline, tvAccept, tvPoweredBy;
@@ -155,8 +158,14 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
 
             }
             v = inflater.inflate(resLayout, container, false);
-            initializePlayer(v);
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+            String profilePicUrl = sharedPref.getString(getContext().getString(R.string.prefs_profileUrl), null);
 
+            ImageView ivUserPic = v.findViewById(R.id.iv_user_pic);
+            Glide.with(this)
+                    .load(profilePicUrl)
+                    .into(ivUserPic);
+            initializePlayer(v);
         } catch (Exception e) {
             Log.d("patchahaad1", Log.getStackTraceString(e));
 
@@ -308,7 +317,7 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
         }
         try {
             ivDecline = v.findViewById(R.id.iv_decline);
-            ivAccept = v.findViewById(R.id.iv_accept);
+            ivAccept = v.findViewById(R.id.fab_pick_up);
             tvContext = v.findViewById(R.id.tv_driverName);
             ivLogo = v.findViewById(R.id.iv_logo);
             tvCallScreenLabel = v.findViewById(R.id.tv_callScreen_label);

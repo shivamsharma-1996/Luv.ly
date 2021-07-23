@@ -13,6 +13,7 @@ import com.google.android.material.chip.ChipGroup
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.shivam.guftagoo.R
+import com.shivam.guftagoo.extensions.capitalizeWords
 import com.shivam.guftagoo.models.User
 import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
@@ -37,8 +38,8 @@ class CardStackAdapter(items: MutableList<User>, val swipeListener: (User?)->Uni
         val city: TextView = itemView.findViewById((R.id.item_city))
         val interests: ChipGroup = itemView.findViewById(R.id.chips_user_interest)
 
-        val fab_reject = itemView.findViewById<View>((R.id.fab_reject))
-        val fab_accept = itemView.findViewById<View>((R.id.fab_accept))
+        val fabReject = itemView.findViewById<View>((R.id.fab_reject))
+        val fabAccept = itemView.findViewById<View>((R.id.fab_accept))
 
         fun setData(data: User) {
             Glide.with(itemView.context).
@@ -49,7 +50,7 @@ class CardStackAdapter(items: MutableList<User>, val swipeListener: (User?)->Uni
             val day = items[0]
             val month= items[1]
             val year = items[2]
-            tv_user_name.text = data.name + ", "
+            tv_user_name.text = data.name.capitalizeWords() + ", "
             tvAge.text = "" + (Calendar.getInstance().get(Calendar.YEAR) - year.toInt())
 
             val categoryChipList: List<String> = ArrayList()
@@ -84,10 +85,10 @@ class CardStackAdapter(items: MutableList<User>, val swipeListener: (User?)->Uni
     override fun onBindViewHolder(holder: CardStackHolder, position: Int) {
         holder.setData(items!![position])
 
-        holder.fab_reject.setOnClickListener{
+        holder.fabReject.setOnClickListener{
             swipeListener(null)
         }
-        holder.fab_accept.setOnClickListener{
+        holder.fabAccept.setOnClickListener{
             swipeListener(items[position])
         }
     }

@@ -4,10 +4,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +26,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.bumptech.glide.Glide;
 import com.patch.patchcalling.R;
 import com.patch.patchcalling.broadcastreciever.CallNotificationActionReceiver;
 import com.patch.patchcalling.interfaces.CallNotificationAction;
@@ -81,6 +84,13 @@ public class PatchOutgoingFragment extends Fragment implements CallStatus, Activ
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_patch_outgoing, container, false);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+        String profilePicUrl = sharedPref.getString(getContext().getString(R.string.prefs_profileUrl), null);
+
+        ImageView ivUserPic = v.findViewById(R.id.iv_user_pic);
+        Glide.with(this)
+                .load(profilePicUrl)
+                .into(ivUserPic);
         endCall = v.findViewById(R.id.iv_decline);
         tvContext = v.findViewById(R.id.tv_context);
         tvCallStatus = v.findViewById(R.id.tv_callStatus);

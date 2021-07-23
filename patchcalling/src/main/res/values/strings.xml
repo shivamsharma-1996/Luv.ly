@@ -107,6 +107,7 @@
     <string name="patch_missedCallInitiatorHost">missedCallInitiatorHost</string>
     <string name="patch_missedCallReceiverHost">missedCallReceiverHost</string>
     <string name="prefs_baseurl">patch_baseurl</string>
+    <string name="prefs_profileUrl">prefs_profileUrl</string>
     <string name="patch_template_pinview_config">patch_template_pinview</string>
     <string name="patch_template_scratchcard_config">patch_template_scratchcard</string>
 </resources>

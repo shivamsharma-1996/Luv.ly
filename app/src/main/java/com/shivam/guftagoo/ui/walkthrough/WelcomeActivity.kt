@@ -2,8 +2,10 @@ package com.shivam.guftagoo.ui.walkthrough
 
 import android.os.Bundle
 import com.shivam.guftagoo.base.BaseActivity
+import com.shivam.guftagoo.daos.UserDao
 import com.shivam.guftagoo.databinding.ActivityWelcomeBinding
 import com.shivam.guftagoo.extensions.launchActivity
+import com.shivam.guftagoo.extensions.log
 import com.shivam.guftagoo.ui.onboarding.OnboardingActivity
 import kotlinx.android.synthetic.main.activity_welcome.*
 

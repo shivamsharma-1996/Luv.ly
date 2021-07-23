@@ -214,6 +214,14 @@ public class PatchCallscreenFragment extends Fragment implements CallStatus.inco
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_patch_call_screenfragement, container, false);
         try {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
+            String profilePicUrl = sharedPref.getString(getContext().getString(R.string.prefs_profileUrl), null);
+
+            ImageView ivUserPic = v.findViewById(R.id.iv_user_pic);
+            Glide.with(this)
+                    .load(profilePicUrl)
+                    .into(ivUserPic);
+
             webView = (WebView) v.findViewById(R.id.webview);
             tvHoldState = v.findViewById(R.id.tv_hold_state);
             tvContext = (TextView) v.findViewById(R.id.tv_context);
@@ -347,7 +355,7 @@ public class PatchCallscreenFragment extends Fragment implements CallStatus.inco
                         PatchLogger.createLog(e.getMessage(), Log.getStackTraceString(e), getActivity().getApplicationContext());
                 }
 //        checkSignalStrength();
-                setBranding();
+                //setBranding();
 
                 webView.setBackgroundColor(0);
                 webView.getSettings().setJavaScriptEnabled(true);
@@ -386,7 +394,7 @@ public class PatchCallscreenFragment extends Fragment implements CallStatus.inco
                             jsView = view;
                             view.loadUrl("javascript:PatchAndroid.init()");
                             initCallSock();
-                            tvContext.setText(callData.getString("context"));
+                           // tvContext.setText(callData.getString("context"));
                         } catch (Exception e) {
                             if (getActivity() != null && getActivity().getApplicationContext() != null)
                                 PatchLogger.createLog(e.getMessage(), Log.getStackTraceString(e), getActivity().getApplicationContext());
@@ -700,8 +708,8 @@ public class PatchCallscreenFragment extends Fragment implements CallStatus.inco
          */
         private void setBranding () {
             Map<String, View> brandingViewParams = new HashMap<>();
-            brandingViewParams.put("ivLogo", ivLogo);
-            brandingViewParams.put("llBackground", llBackground);
+            //brandingViewParams.put("ivLogo", ivLogo);
+            //brandingViewParams.put("llBackground", llBackground);
             brandingViewParams.put("tvContext", tvContext);
             brandingViewParams.put("tvMute", tvMute);
             brandingViewParams.put("tvDisconnect", tvDisconnect);

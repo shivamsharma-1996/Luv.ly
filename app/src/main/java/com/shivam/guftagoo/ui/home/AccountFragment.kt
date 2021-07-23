@@ -86,11 +86,16 @@ class AccountFragment private constructor() : BaseFragment(), Player.EventListen
 
         val items: List<String> = retrieveString(Constants.KEY_DOB).split("-")
 
-        val day = items[0]
-        val month = items[1]
-        val year = items[2]
-        val age = AppUtil.getAge(year.toInt(), month.toInt(), day.toInt())
-        binding.tvUserName.text = retrieveString(Constants.KEY_NAME) + ", " + age
+
+        try {
+            val day = items[0]
+            val month = items[1]
+            val year = items[2]
+            val age = AppUtil.getAge(year.toInt(), month.toInt(), day.toInt())
+            binding.tvUserName.text = retrieveString(Constants.KEY_NAME) + ", " + age
+        }catch (e:java.lang.Exception){
+
+        }
 
         val phoneNumber = String.format(
             "%s-%s",
@@ -197,27 +202,41 @@ class AccountFragment private constructor() : BaseFragment(), Player.EventListen
     }
 
     private fun fetchVideos() {
-        val userDao = UserDao()
-        progress_bar.visibility = VISIBLE
-        userDao.fetchListOfVideoUris(
-            requireActivity(),
-            Firebase.auth.currentUser!!.uid
-        ) { videoUriList, error ->
-            runOnMain {
-                progress_bar.visibility = GONE
-                if (error != null) {
-                    showSnack(error)
-                } else {
-                    videoUriList?.let {
-                        if(it.isEmpty()){
-                            tv_empty_list_msg.visibility = VISIBLE
-                        }else{
-                            tv_empty_list_msg.visibility = GONE
-                            userMediaAdapter.submitData(videoUriList)
+        try {
+            val userDao = UserDao()
+            progress_bar.visibility = VISIBLE
+            userDao.fetchListOfVideoUris(
+                requireActivity(),
+                Firebase.auth.currentUser!!.uid
+            ) { videoUriList, error ->
+                try {
+                    runOnMain {
+                        progress_bar?.visibility = GONE
+                        if (error != null) {
+                            showSnack(error)
+                        } else {
+                            videoUriList?.let {
+                                try {
+                                    if(it.isEmpty()){
+                                        tv_empty_list_msg?.visibility = VISIBLE
+                                    }else{
+                                        tv_empty_list_msg.visibility = GONE
+                                        userMediaAdapter.submitData(videoUriList)
+                                    }
+                                }catch (e: Exception){
+
+                                }
+                            }
                         }
                     }
+
+                }catch (e:Exception){
+
                 }
             }
+        }catch (e: Exception){
+
         }
+
     }
 }

@@ -4,8 +4,6 @@ import android.app.Activity
 import android.graphics.Bitmap
 import android.net.Uri
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FieldPath
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.component1
@@ -17,15 +15,38 @@ import com.shivam.guftagoo.models.User
 import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
+import java.lang.Exception
 
 
 class UserDao {
     private val db = FirebaseFirestore.getInstance()
     private val storageRef = Firebase.storage.reference
     private val userCollection = db.collection("users")
-    var washingtonRef = db.collection("cities").document("DC")
 
-    fun addUser(user: User, onCompletionHandler: () -> Unit){
+    fun checkIfUserExists(
+        number: String,
+        onCompletionHandler: (Boolean, User?) -> Unit
+    ) {
+        GlobalScope.launch {
+            userCollection.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    if (task.result != null) {
+                        val usersList = task.result!!.toObjects(User::class.java)
+                        for (user in usersList) {
+                            if (user.phoneNumber == number) {
+                                onCompletionHandler(true, user)
+                                break
+                            }
+                        }
+                    }
+                } else {
+                    onCompletionHandler(false, null)
+                }
+            }
+        }
+    }
+
+    fun addUser(user: User, onCompletionHandler: () -> Unit) {
         user?.let {
             CoroutineScope(Dispatchers.IO).launch {
                 userCollection.document(user.uid).set(it).await()
@@ -34,30 +55,30 @@ class UserDao {
         }
     }
 
-    fun addVideosToUserModel(videoUrlList: List<String> ){
+    fun addVideosToUserModel(videoUrlList: List<String>) {
         GlobalScope.launch(Dispatchers.IO) {
             userCollection.document(Firebase.auth.currentUser!!.uid).update("videos", videoUrlList)
-                .addOnCompleteListener{ task ->
-                    if(task.isSuccessful){
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
                         log("addVideosToUserModel", "success!")
-                    }else{
+                    } else {
                         log("addVideosToUserModel", "failure!")
                     }
                 }
-            }
+        }
     }
 
     fun fetchUsers(
         onCompletionHandler: (MutableList<User>?, error: String?) -> Unit
     ) {
         GlobalScope.launch {
-            userCollection.get().addOnCompleteListener{ task ->
-                if(task.isSuccessful){
+            userCollection.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
                     if (task.result != null) {
                         val userList = task.result!!.toObjects(User::class.java)!!
                         onCompletionHandler(userList, null)
                     }
-                }else{
+                } else {
                     onCompletionHandler(null, task.exception!!.message)
                 }
             }
@@ -69,7 +90,7 @@ class UserDao {
         bitmap: Bitmap,
         uid: String,
         onCompletionHandler: (String) -> Unit
-    ){
+    ) {
         val imagesRef = storageRef.child("images/$uid.jpg")
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
@@ -84,7 +105,7 @@ class UserDao {
         }.addOnSuccessListener { taskSnapshot ->
             CoroutineScope(Dispatchers.IO).launch {
                 val downloadUri: Uri? = taskSnapshot.storage.downloadUrl.await()
-                if (downloadUri!=null) {
+                if (downloadUri != null) {
                     log("## Stored path is $downloadUri")
                     onCompletionHandler(downloadUri.toString())
                 }
@@ -111,7 +132,7 @@ class UserDao {
                                 val url = it.downloadUrl.await()
                                 videoUriList.add(url.toString())
                             }
-                        }.forEach{
+                        }.forEach {
                             it.await()
                         }
                         addVideosToUserModel(videoUriList)
@@ -133,7 +154,6 @@ class UserDao {
             }*/
         }
     }
-
 
 
 }

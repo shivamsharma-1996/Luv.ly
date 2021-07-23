@@ -268,7 +268,7 @@ public class NotificationHandler {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public NotificationChannel getNotficationChannel(String CHANNEL_ID, String CHANNEL_NAME, String CHANNEL_DESC, String channelCause) throws Exception {
-        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_HIGH);
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, CHANNEL_NAME, NotificationManager.IMPORTANCE_DEFAULT);
         channel.setDescription(CHANNEL_DESC);
         channel.setShowBadge(true);
         channel.canShowBadge();

@@ -548,6 +548,10 @@ public class PatchSDK {
                             //return;
                         }
                         String session = sharedPref.getString("patch_session", null);
+                        if(initJson.has("profileUrl") && !initJson.getString("profileUrl").isEmpty()){
+                            editor.putString(context.getString(R.string.prefs_profileUrl), initJson.getString("profileUrl"));
+                            editor.commit();
+                        }
                         if (session != null && session.equals("true")) {
                             //Hit /jwt/verify
                             JwtUtil.getInstance(context).verifyToken(context, false, patchInitResponse);
@@ -1961,11 +1965,11 @@ public class PatchSDK {
                                         customHandler.sendCallAnnotation(outgoingCallResponse, CustomHandler.OutCall.ON_FAILURE, PatchResponseCodes.OutgoingCallCallback.OnFailure.ERR_CALL_CONTEXT_REQUIRED);
                                         return;
                                     }
-                                    if (context.length() > 64) {
+                                    /*if (context.length() > 64) {
                                         sdkReady = true;
                                         customHandler.sendCallAnnotation(outgoingCallResponse, CustomHandler.OutCall.ON_FAILURE, PatchResponseCodes.OutgoingCallCallback.OnFailure.ERR_CALL_CONTEXT_LENGTH_EXCEEDED_BY_64);
                                         return;
-                                    }
+                                    }*/
                                     if (calleeCuid == null || calleeCuid.length() == 0 || calleeCuid.trim().length() == 0) {
                                         //Log.d("Patch", "Please pass a valid cuid");
                                         sdkReady = true;

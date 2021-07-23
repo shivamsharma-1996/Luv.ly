@@ -18,16 +18,25 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.PhoneAuthCredential
 import com.google.firebase.auth.PhoneAuthProvider
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.base.BaseFragment
 import com.shivam.guftagoo.daos.SignInDao
+import com.shivam.guftagoo.daos.UserDao
 import com.shivam.guftagoo.databinding.FragmentOtpBinding
 import com.shivam.guftagoo.extensions.log
 import com.shivam.guftagoo.extensions.replaceFragment
 import com.shivam.guftagoo.extensions.showSnack
+import com.shivam.guftagoo.models.SignInUser
+import com.shivam.guftagoo.models.User
 import com.shivam.guftagoo.receivers.SmsBroadcastReceiver
 import com.shivam.guftagoo.receivers.SmsBroadcastReceiverListener
+import com.shivam.guftagoo.ui.home.HomeActivity_new
 import com.shivam.guftagoo.util.AppUtil
+import com.shivam.guftagoo.util.Constants
+import com.shivam.guftagoo.util.Constants.KEY_INTERESTS
+import com.shivam.guftagoo.util.putString
 import kotlinx.android.synthetic.main.fragment_otp.*
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -122,12 +131,8 @@ class OtpFragment : BaseFragment(), View.OnClickListener {
 //                        val intent = Intent(activity, HomeActivity::class.java)
 //                        startActivity(intent)
 //                        activity.finish()
-                        (activity as OnboardingActivity)
-                            .replaceFragment(
-                                NameFragment.newInstance(),
-                                R.id.containerFrame,
-                                backStackTag = OtpFragment.javaClass.simpleName
-                            )
+
+                        checkWhetherNumberExists()
                     }
                 } else {
                     // Sign in failed, display a message and update the UI
@@ -137,6 +142,40 @@ class OtpFragment : BaseFragment(), View.OnClickListener {
                     }
                 }
             }
+    }
+
+    private fun checkWhetherNumberExists() {
+        phoneNumber?.let {
+             UserDao().checkIfUserExists(phoneNumber!!){ isUserExist, user ->
+                 if(isUserExist){
+                     saveUserInPrefs(user!!)
+                     (activity as OnboardingActivity)
+                         .replaceFragment(
+                             OnboardingFinishFragment.newInstance(),
+                             R.id.containerFrame,
+                             backStackTag = OtpFragment.javaClass.simpleName
+
+                         )
+                 }else{
+                     (activity as OnboardingActivity)
+                         .replaceFragment(
+                             NameFragment.newInstance(),
+                             R.id.containerFrame,
+                             backStackTag = OtpFragment.javaClass.simpleName
+                         )
+                 }
+            }
+        }
+    }
+
+    private fun saveUserInPrefs(currentUser: User) {
+        putString(Constants.KEY_USER_ID, Firebase.auth.currentUser!!.uid)
+        putString(Constants.KEY_NAME, currentUser.name)
+        putString(Constants.KEY_PHONE_NUMBER, currentUser.phoneNumber)
+        putString(Constants.KEY_COUNTRY_CODE, currentUser.countryCode)
+        putString(Constants.KEY_GENDER, currentUser.gender)
+        putString(Constants.KEY_DOB, currentUser.dob)
+        putString(Constants.KEY_PROFILE_PIC_URL, currentUser.imageUrl)
     }
 
     private fun setTextWatcher() {

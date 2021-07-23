@@ -6,7 +6,7 @@
     android:id="@+id/ll_callscreen_background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_incomingcolor"
+    android:background="#000"
     tools:context="com.patch.patchcalling.fragments.PatchCallscreenFragment">
 
     <WebView
@@ -34,11 +34,28 @@
         app:layout_constraintTop_toTopOf="parent"
         myPrefix:customFont="@string/OpenSans_Reguler" />
 
+    <com.github.abdularis.civ.AvatarImageView
+        android:id="@+id/iv_user_pic"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="@dimen/_32sdp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:src="@drawable/callee"
+        app:strokeWidth="1dp"
+        app:view_state="IMAGE"
+        app:avatarBackgroundColor="#a94a93"
+        app:text="S"
+        app:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_callScreen_label"/>
+
     <ImageView
         android:id="@+id/iv_callScreen_logo"
         android:layout_width="@dimen/_175sdp"
         android:layout_height="@dimen/_80sdp"
         android:padding="@dimen/_6sdp"
+        android:visibility="invisible"
         android:layout_marginTop="@dimen/_8sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +71,7 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="21sp"
+        android:text="test call"
         android:maxLines="2"
         android:ellipsize="end"
         app:layout_constraintVertical_bias="0.1"

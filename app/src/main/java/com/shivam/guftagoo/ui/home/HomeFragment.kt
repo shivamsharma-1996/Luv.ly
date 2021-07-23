@@ -8,6 +8,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -31,9 +32,9 @@ import com.yuyakaido.android.cardstackview.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.json.JSONObject
 
-class HomeFragment private constructor(): Fragment() {
+class HomeFragment private constructor() : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private var manager : CardStackLayoutManager? =null
+    private var manager: CardStackLayoutManager? = null
     private var adapter: CardStackAdapter? = null
     private val TAG = "HomeFragment"
 
@@ -43,7 +44,7 @@ class HomeFragment private constructor(): Fragment() {
         @JvmStatic
         fun newInstance() = HomeFragment()
     }
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -53,7 +54,7 @@ class HomeFragment private constructor(): Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
-        return binding.root    
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -109,15 +110,15 @@ class HomeFragment private constructor(): Fragment() {
             }
         })
 
-        manager!!.setStackFrom(StackFrom.None)
+        manager!!.setStackFrom(StackFrom.Top)
         manager!!.setVisibleCount(3)
         manager!!.setTranslationInterval(8.0f)
         manager!!.setScaleInterval(0.95f)
         manager!!.setSwipeThreshold(0.3f)
         manager!!.setMaxDegree(20.0f)
-        manager!!.setDirections(Direction.FREEDOM)
+        manager!!.setDirections(listOf(Direction.Left, Direction.Right))
         manager!!.setCanScrollHorizontal(true)
-        manager!!.setSwipeableMethod(SwipeableMethod.Manual)
+        manager!!.setSwipeableMethod(SwipeableMethod.AutomaticAndManual)
         manager!!.setOverlayInterpolator(LinearInterpolator())
         card_stack_view.itemAnimator = DefaultItemAnimator()
 
@@ -134,24 +135,38 @@ class HomeFragment private constructor(): Fragment() {
         hasil.dispatchUpdatesTo(adapter!!)
     }*/
 
-    private fun fetchUsers(){
+    private fun fetchUsers() {
         val userDao = UserDao()
 
-        userDao.fetchUsers{ userList, error ->
-            if(userList!=null && userList.isNotEmpty()){
-                adapter = CardStackAdapter(userList.filter {  it.uid != Firebase.auth.uid}
-                    .toMutableList()){ user ->
-                    if(user!=null && user.videos.isNotEmpty()){
-                        getMicrophonePermission {
-                            makeVoIPCall(user)
+        userDao.fetchUsers { userList, error ->
+            if (userList != null && userList.isNotEmpty()) {
+                val currentUser = userList.find { it.uid == Firebase.auth.uid }
+
+                adapter = CardStackAdapter(userList.filter { it.uid != Firebase.auth.uid }
+                    .toMutableList()) { user ->
+
+//                    val setting = SwipeAnimationSetting.Builder()
+//                        .setDirection(Direction.Right)
+//                        .setDuration(Duration.Slow.duration)
+//                        .setInterpolator(AccelerateInterpolator())
+//                        .build()
+//                    manager!!.setSwipeAnimationSetting(setting)
+//                    card_stack_view.swipe()
+                    try {
+                        if (currentUser!!.videos.isNotEmpty()) {
+                            getMicrophonePermission {
+                                makeVoIPCall(user!!, currentUser!!)
+                            }
+                        } else {
+                            showSnack("Add atleast one video to your profile!")
                         }
-                    }else{
-                        showSnack("Add atleast one video to your profile!")
+                    } catch (e: Exception) {
+
                     }
                 }
                 card_stack_view.layoutManager = manager
                 card_stack_view.adapter = adapter
-            }else{
+            } else {
                 showSnack(error!!)
             }
             binding.findPeopleLoader.visibility = View.GONE
@@ -159,14 +174,14 @@ class HomeFragment private constructor(): Fragment() {
         }
     }
 
-    private fun makeVoIPCall(user: User) {
+    private fun makeVoIPCall(user: User, currentUser: User) {
         val options = JSONObject()
         if (PatchSDK.isGoodToGo()) {
             //options.put("cli", cli);
             PatchSDK.getInstance().call(
                 context,
                 user.uid,
-                user.videos[0],
+                currentUser.videos[0],
                 options,
                 object : OutgoingCallResponse {
                     override fun callStatus(reason: Int) {
@@ -232,11 +247,11 @@ class HomeFragment private constructor(): Fragment() {
             PackageManager.PERMISSION_DENIED
         ) {
             ActivityCompat.requestPermissions(
-                requireActivity(), arrayOf(Manifest.permission.CAMERA),
+                requireActivity(), arrayOf(Manifest.permission.RECORD_AUDIO),
                 MICROPHONE_PERMISSION_CODE
             )
-        }else{
-            onGrantedListener
+        } else {
+            onGrantedListener()
         }
     }
 

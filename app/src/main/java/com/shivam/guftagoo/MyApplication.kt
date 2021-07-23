@@ -53,6 +53,7 @@ class MyApplication: Application() {
                 try {
                     options.put("accountID", accountId)
                     options.put("apikey", apikey)
+                    options.put("profileUrl", retrieveString(Constants.KEY_PROFILE_PIC_URL))
                     options.put("cc", retrieveString(Constants.KEY_COUNTRY_CODE).replace("+", ""))
                     options.put("phone", retrieveString(Constants.KEY_PHONE_NUMBER))
                     options.put("name", retrieveString(Constants.KEY_NAME))
