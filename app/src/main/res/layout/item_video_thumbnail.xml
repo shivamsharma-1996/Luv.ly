@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="1dp"
-    >
+    android:id="@+id/item_user_media">
 
     <ImageView
         android:id="@+id/iv_video_thumbnail"
@@ -22,11 +21,40 @@
     <ImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:padding="4dp"
-        android:layout_margin="@dimen/_6sdp"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:src="@drawable/ic_play"
         app:tint="@color/white"/>
 
+    <TextView
+        android:id="@+id/tv_default_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:textSize="@dimen/textSizeSubMini"
+        android:text="Default"
+        android:fontFamily="@font/nunito_bold"
+        android:gravity="center_vertical"
+        android:drawablePadding="4dp"
+        android:padding="2dp"
+        android:visibility="invisible"
+        android:drawableTint="@color/white"
+        android:drawableEnd="@drawable/ic_small_check"
+        android:background="@drawable/bg_round_default_checked"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_more"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:src="@drawable/ic_more"
+        android:rotation="90"
+        android:padding="2dp"
+        android:layout_margin="6dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

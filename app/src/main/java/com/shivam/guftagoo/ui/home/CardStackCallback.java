@@ -4,7 +4,6 @@ import java.util.List;
 
 import androidx.recyclerview.widget.DiffUtil;
 
-import com.shivam.guftagoo.models.ItemModel;
 import com.shivam.guftagoo.models.User;
 
 public class CardStackCallback extends DiffUtil.Callback {

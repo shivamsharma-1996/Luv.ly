@@ -10,12 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.extensions.capitalizeWords
 import com.shivam.guftagoo.models.User
-import kotlinx.android.synthetic.main.activity_home.*
 import java.util.*
 import kotlin.collections.ArrayList
 

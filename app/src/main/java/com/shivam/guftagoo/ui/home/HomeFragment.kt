@@ -3,12 +3,10 @@ package com.shivam.guftagoo.ui.home
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AccelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -23,7 +21,6 @@ import com.patch.patchcalling.javaclasses.PatchSDK
 import com.shivam.guftagoo.R
 import com.shivam.guftagoo.daos.UserDao
 import com.shivam.guftagoo.databinding.FragmentHomeBinding
-import com.shivam.guftagoo.extensions.delayedHandler
 import com.shivam.guftagoo.extensions.runOnMain
 import com.shivam.guftagoo.extensions.showSnack
 import com.shivam.guftagoo.models.ItemModel

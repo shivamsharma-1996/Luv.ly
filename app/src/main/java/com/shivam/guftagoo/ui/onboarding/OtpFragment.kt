@@ -28,14 +28,11 @@ import com.shivam.guftagoo.databinding.FragmentOtpBinding
 import com.shivam.guftagoo.extensions.log
 import com.shivam.guftagoo.extensions.replaceFragment
 import com.shivam.guftagoo.extensions.showSnack
-import com.shivam.guftagoo.models.SignInUser
 import com.shivam.guftagoo.models.User
 import com.shivam.guftagoo.receivers.SmsBroadcastReceiver
 import com.shivam.guftagoo.receivers.SmsBroadcastReceiverListener
-import com.shivam.guftagoo.ui.home.HomeActivity_new
 import com.shivam.guftagoo.util.AppUtil
 import com.shivam.guftagoo.util.Constants
-import com.shivam.guftagoo.util.Constants.KEY_INTERESTS
 import com.shivam.guftagoo.util.putString
 import kotlinx.android.synthetic.main.fragment_otp.*
 import java.util.regex.Matcher
