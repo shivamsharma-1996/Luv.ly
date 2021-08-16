@@ -151,7 +151,6 @@ class OtpFragment : BaseFragment(), View.OnClickListener {
                              OnboardingFinishFragment.newInstance(),
                              R.id.containerFrame,
                              backStackTag = OtpFragment.javaClass.simpleName
-
                          )
                  }else{
                      (activity as OnboardingActivity)

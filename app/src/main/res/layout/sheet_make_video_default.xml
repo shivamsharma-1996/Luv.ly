@@ -19,11 +19,14 @@
 
     <TextView
         android:id="@+id/tv_make_as_default"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Make this video as default"
         android:gravity="start"
-        android:padding="4dp"
+        android:padding="6dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackgroundBorderless"
         android:fontFamily="@font/nunito_bold"
         android:textColor="#FFFF0000"
         android:layout_marginTop="@dimen/_24sdp"

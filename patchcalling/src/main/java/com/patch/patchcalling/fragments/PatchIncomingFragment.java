@@ -87,8 +87,7 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
     private long playbackPosition = 0;
     private String mp4Url = "https://html5demos.com/assets/dizzy.mp4";
 
-    private ImageView ivDecline, ivLogo;
-    private RelativeLayout ivAccept;
+    private ImageView ivDecline, ivLogo, ivAccept;
     static JSONObject callDetails;
     String callContext, fromCuid, toCuid;
     TextView tvContext, tvCallScreenLabel, tvDecline, tvAccept, tvPoweredBy;
@@ -317,7 +316,7 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
         }
         try {
             ivDecline = v.findViewById(R.id.iv_decline);
-            ivAccept = v.findViewById(R.id.fab_pick_up);
+            ivAccept = v.findViewById(R.id.iv_accept);
             tvContext = v.findViewById(R.id.tv_driverName);
             ivLogo = v.findViewById(R.id.iv_logo);
             tvCallScreenLabel = v.findViewById(R.id.tv_callScreen_label);
@@ -462,12 +461,11 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
         brandingViewParams.put("llBackground", llBackground);
         brandingViewParams.put("tvContext", tvContext);
         brandingViewParams.put("tvPoweredBy", tvPoweredBy);
-        brandingViewParams.put("tvAccept", tvAccept);
-        brandingViewParams.put("tvDecline", tvDecline);
+        //brandingViewParams.put("tvAccept", tvAccept);
+        //brandingViewParams.put("tvDecline", tvDecline);
         brandingViewParams.put("tvCallScreenLabel", tvCallScreenLabel);
         OutgoingUtil.getInstance().setBranding(getContext(), brandingViewParams, TAG);
     }
-
 
     /**
      * sets branding of account to the callDetails object to be sent to callScreen

@@ -178,7 +178,7 @@ class HomeFragment private constructor() : Fragment() {
             PatchSDK.getInstance().call(
                 context,
                 user.uid,
-                currentUser.videos[0],
+                currentUser.defaultMediaUrl,
                 options,
                 object : OutgoingCallResponse {
                     override fun callStatus(reason: Int) {
@@ -189,7 +189,7 @@ class HomeFragment private constructor() : Fragment() {
 
                     override fun onSuccess(response: Int) {
                         Log.d("Patch", response.toString())
-                        Toast.makeText(context, "response is$response", Toast.LENGTH_LONG)
+                        Toast.makeText(context, "response is $response", Toast.LENGTH_LONG)
                             .show()
                     }
 

@@ -33,12 +33,16 @@ class UserDao {
                 if (task.isSuccessful) {
                     if (task.result != null) {
                         val usersList = task.result!!.toObjects(User::class.java)
+                        var isUserAlreadyExist = false
                         for (user in usersList) {
                             if (user.phoneNumber == number) {
                                 onCompletionHandler(true, user)
+                                isUserAlreadyExist = true
                                 break
                             }
                         }
+                        if(!isUserAlreadyExist)
+                        onCompletionHandler(false, null)
                     }
                 } else {
                     onCompletionHandler(false, null)
@@ -187,7 +191,8 @@ class UserDao {
         CoroutineScope(Dispatchers.IO).launch {
             val currentUserReference = userCollection.document(Firebase.auth.currentUser!!.uid)
             val documentSnapShot = currentUserReference.get().await()
-            if(documentSnapShot.getString("defaultMediaUrl")==null){
+            if(documentSnapShot.getString("defaultMediaUrl")==null ||
+                documentSnapShot.getString("defaultMediaUrl")!!.isEmpty()){
                 currentUserReference.update("defaultMediaUrl", defaultVideoUrl).await()
             }
         }

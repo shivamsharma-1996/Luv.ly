@@ -75,15 +75,84 @@
             android:includeFontPadding="false"
             android:text="Swipe up to answer"
             android:textColor="#fff"
+            android:visibility="invisible"
             android:textSize="@dimen/textSizeNormal"
             app:layout_constraintBottom_toTopOf="@+id/fab_pick_up"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="@dimen/_45sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_decline"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/decline"
+                    android:src="@drawable/disconnect" />
+
+                <com.patch.patchcalling.custom.CustomTextView
+                    android:id="@+id/tv_decline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/decline"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="visible"
+                    myPrefix:customFont="@string/OpenSans_Reguler" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="@dimen/_45sdp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/iv_accept"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@string/accept"
+                    android:src="@drawable/connect" />
+
+                <com.patch.patchcalling.custom.CustomTextView
+                    android:id="@+id/tv_accept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/accept"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="visible"
+                    myPrefix:customFont="@string/OpenSans_Reguler" />
+            </LinearLayout>
+        </LinearLayout>
+
         <RelativeLayout
             android:id="@+id/fab_pick_up"
             android:layout_width="110dp"
             android:layout_height="110dp"
+            android:visibility="invisible"
             android:descendantFocusability="blocksDescendants"
             android:layout_marginBottom="@dimen/_32sdp"
             android:background="@drawable/background_concentric_stroke"
@@ -111,6 +180,7 @@
             android:layout_marginBottom="@dimen/_21sdp"
             android:fontFamily="@font/nunito_semibold"
             android:textSize="@dimen/textSizeNormal"
+            android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
@@ -384,6 +454,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--
         <LinearLayout
             android:id="@+id/ll"
             android:layout_width="match_parent"
@@ -417,7 +488,7 @@
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_10sdp"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     myPrefix:customFont="@string/OpenSans_Reguler" />
             </LinearLayout>
 
@@ -446,10 +517,11 @@
                     android:textAlignment="center"
                     android:textColor="@android:color/black"
                     android:textSize="@dimen/_10sdp"
-                    android:visibility="invisible"
+                    android:visibility="visible"
                     myPrefix:customFont="@string/OpenSans_Reguler" />
             </LinearLayout>
         </LinearLayout>
+-->
 
 
         <com.patch.patchcalling.custom.CustomTextView
