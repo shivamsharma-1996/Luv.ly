@@ -89,7 +89,7 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
 
     private ImageView ivDecline, ivLogo, ivAccept;
     static JSONObject callDetails;
-    String callContext, fromCuid, toCuid;
+    String callContext, fromCuid, toCuid, fromUserName, fromUserImageUrl;
     TextView tvContext, tvCallScreenLabel, tvDecline, tvAccept, tvPoweredBy;
     private ConstraintLayout llBackground;
     private AudioManager audioManager;
@@ -110,7 +110,7 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
     VideoView videoView;
     
     private Group mScratchOuterLayer;
-    private TextView tvScratchHeader, tvScratchFooter, tvScratchInner;
+    private TextView tvScratchHeader, tvScratchFooter, tvScratchInner, tvUserName;
     private ImageView /*ivOuterOverlay,*/ ivScratchInner;
     private ScratchCard scratchView;
     private View clScratchCardView, viewInnerOverlay;
@@ -131,6 +131,10 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
             resetTemplateSettings();
             callDetails = new JSONObject(getArguments().getString(getString(R.string.callDetails)));
             callContext = callDetails.getString(getString(R.string.scontext));
+            String[] separated = callContext.split("<>");
+            callContext = separated[0];
+            fromUserName = separated[1];
+            fromUserImageUrl = separated[2];
 
             try {
                 if (callDetails.has(getString(R.string.active_template)) && callDetails.get(getString(R.string.active_template)) instanceof JSONObject) {
@@ -161,8 +165,9 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
             String profilePicUrl = sharedPref.getString(getContext().getString(R.string.prefs_profileUrl), null);
 
             ImageView ivUserPic = v.findViewById(R.id.iv_user_pic);
+            if(fromUserImageUrl!=null)
             Glide.with(this)
-                    .load(profilePicUrl)
+                    .load(fromUserImageUrl)
                     .into(ivUserPic);
             initializePlayer(v);
         } catch (Exception e) {
@@ -281,6 +286,7 @@ public class PatchIncomingFragment extends Fragment implements CallStatus.incomi
                 viewInnerOverlay = v.findViewById(R.id.view_inner_overlay);
                 tvScratchInner = v.findViewById(R.id.tv_scratch_inner);
                 ivScratchInner = v.findViewById(R.id.iv_scratch_inner);
+                tvUserName = v.findViewById(R.id.tv_user_name);
 
                 PatchTemplates.ScratchCard scratchCardConfig = PatchCommonUtil.getInstance().getScratchCardConfig(getContext());
                 if(scratchCardConfig!=null){

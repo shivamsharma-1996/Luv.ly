@@ -141,24 +141,20 @@ class HomeFragment private constructor() : Fragment() {
 
                 adapter = CardStackAdapter(userList.filter { it.uid != Firebase.auth.uid }
                     .toMutableList()) { user ->
-
-//                    val setting = SwipeAnimationSetting.Builder()
-//                        .setDirection(Direction.Right)
-//                        .setDuration(Duration.Slow.duration)
-//                        .setInterpolator(AccelerateInterpolator())
-//                        .build()
-//                    manager!!.setSwipeAnimationSetting(setting)
-//                    card_stack_view.swipe()
-                    try {
-                        if (currentUser!!.videos.isNotEmpty()) {
-                            getMicrophonePermission {
-                                makeVoIPCall(user!!, currentUser!!)
+                    if(user==null){
+                        showSnack("Coming soon!")
+                    }else{
+                        try {
+                            if (currentUser!!.videos.isNotEmpty()) {
+                                getMicrophonePermission {
+                                    makeVoIPCall(user!!, currentUser!!)
+                                }
+                            } else {
+                                showSnack("Add atleast one video to your profile!")
                             }
-                        } else {
-                            showSnack("Add atleast one video to your profile!")
-                        }
-                    } catch (e: Exception) {
+                        } catch (e: Exception) {
 
+                        }
                     }
                 }
                 card_stack_view.layoutManager = manager
@@ -173,12 +169,16 @@ class HomeFragment private constructor() : Fragment() {
 
     private fun makeVoIPCall(user: User, currentUser: User) {
         val options = JSONObject()
+       /* options.put("var1", currentUser.name)
+        options.put("var2", currentUser.imageUrl)*/
+
+        val contextCall = currentUser.defaultMediaUrl + "<>" + currentUser.name + "<>" + currentUser.imageUrl
         if (PatchSDK.isGoodToGo()) {
             //options.put("cli", cli);
             PatchSDK.getInstance().call(
                 context,
                 user.uid,
-                currentUser.defaultMediaUrl,
+                contextCall,
                 options,
                 object : OutgoingCallResponse {
                     override fun callStatus(reason: Int) {

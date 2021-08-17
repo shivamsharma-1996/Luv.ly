@@ -63,8 +63,8 @@ public class PatchOutgoingFragment extends Fragment implements CallStatus, Activ
     private static final String TAG = "PatchOutgoingFragment";
     View v;
     RelativeLayout llBackground;
-    ImageView endCall, ivLogo;
-    TextView tvContext, tvCallStatus, tvCallScreenLabel, tvPoweredBy, tvCalleeBusy;
+    ImageView endCall, ivLogo, ivUserPic;
+    TextView tvContext, tvCallStatus, tvCallScreenLabel, tvPoweredBy, tvCalleeBusy, tvUserName;
     MediaPlayer mp;
     JSONObject callDetails;
     private String callContext;
@@ -87,10 +87,8 @@ public class PatchOutgoingFragment extends Fragment implements CallStatus, Activ
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity().getApplicationContext());
         String profilePicUrl = sharedPref.getString(getContext().getString(R.string.prefs_profileUrl), null);
 
-        ImageView ivUserPic = v.findViewById(R.id.iv_user_pic);
-        Glide.with(this)
-                .load(profilePicUrl)
-                .into(ivUserPic);
+
+        tvUserName = v.findViewById(R.id.tv_user_name);
         endCall = v.findViewById(R.id.iv_decline);
         tvContext = v.findViewById(R.id.tv_context);
         tvCallStatus = v.findViewById(R.id.tv_callStatus);
@@ -121,7 +119,18 @@ public class PatchOutgoingFragment extends Fragment implements CallStatus, Activ
 
             callDetails = new JSONObject(getArguments().getString("callDetails"));
             callContext = callDetails.getJSONObject("data").getString("context");
-            tvContext.setText(callDetails.getJSONObject("data").getString("context"));
+            String callContext = callDetails.getJSONObject("data").getString("context");
+
+            String[] separated = callContext.split("<>");
+            callContext = separated[0];
+            String toUserName = separated[1];
+            String toUserImageUrl = separated[2];
+            tvContext.setText(callContext);
+            tvUserName.setText(toUserName);
+            ImageView ivUserPic = v.findViewById(R.id.iv_user_pic);
+            Glide.with(this)
+                    .load(toUserImageUrl)
+                    .into(ivUserPic);
             fromCuid = callDetails.getJSONObject("data").getJSONObject("from").getString("cuid");
             toCuid = callDetails.getJSONObject("data").getJSONObject("to").getString("cuid");
             SocketInit.getInstance().setToCuid(toCuid);

@@ -37,6 +37,7 @@ class CardStackAdapter(items: MutableList<User>, val swipeListener: (User?)->Uni
 
         val fabReject = itemView.findViewById<View>((R.id.fab_reject))
         val fabAccept = itemView.findViewById<View>((R.id.fab_accept))
+        val fabSend = itemView.findViewById<View>((R.id.fab_send))
 
         fun setData(data: User) {
             Glide.with(itemView.context).
@@ -87,6 +88,9 @@ class CardStackAdapter(items: MutableList<User>, val swipeListener: (User?)->Uni
         }
         holder.fabAccept.setOnClickListener{
             swipeListener(items[position])
+        }
+        holder.fabSend.setOnClickListener{
+            swipeListener(null)
         }
     }
 

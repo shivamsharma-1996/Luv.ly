@@ -1578,7 +1578,6 @@ public class JobSchedulerSocketService extends JobService implements Connectivit
                                                     callOptions.remove("autoFallback");
                                                     makeCall("", "", calleeCuid, callContext, callOptions, outgoingCallResponse, null);
                                                 }
-
                                             } else if (data.getJSONObject("error") != null && data.getJSONObject("error").has("code") &&
                                                     data.getJSONObject("error").getInt("code") == 400 &&
                                                     data.getJSONObject("error").has("message") &&

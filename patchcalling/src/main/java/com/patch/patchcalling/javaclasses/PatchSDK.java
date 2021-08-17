@@ -2020,18 +2020,18 @@ public class PatchSDK {
 
                                         }
                                     }
-                                    if (callOptions.getString("var1").length() > 128) {
+                                    /*if (callOptions.getString("var1").length() > 128) {
                                         sdkReady = true;
                                         //outgoingCallResponse.onFailure(ERR_VAR_LENGTH_EXCEEDED_BY_128);
                                         customHandler.sendCallAnnotation(outgoingCallResponse, CustomHandler.OutCall.ON_FAILURE, ERR_VAR_LENGTH_EXCEEDED_BY_128);
                                         return;
-                                    }
-                                    if (callOptions.getString("var2").length() > 128) {
-                                        sdkReady = true;
-                                        //outgoingCallResponse.onFailure(ERR_VAR_LENGTH_EXCEEDED_BY_128);
-                                        customHandler.sendCallAnnotation(outgoingCallResponse, CustomHandler.OutCall.ON_FAILURE, ERR_VAR_LENGTH_EXCEEDED_BY_128);
-                                        return;
-                                    }
+                                    }*/
+//                                    if (callOptions.getString("var2").length() > 128) {
+//                                        sdkReady = true;
+//                                        //outgoingCallResponse.onFailure(ERR_VAR_LENGTH_EXCEEDED_BY_128);
+//                                        customHandler.sendCallAnnotation(outgoingCallResponse, CustomHandler.OutCall.ON_FAILURE, ERR_VAR_LENGTH_EXCEEDED_BY_128);
+//                                        return;
+//                                    }
                                     if (callOptions.getString("var3").length() > 128) {
                                         sdkReady = true;
                                         //outgoingCallResponse.onFailure(ERR_VAR_LENGTH_EXCEEDED_BY_128);
