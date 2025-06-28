@@ -2,7 +2,7 @@
 
 **Luv.ly** is a polished, native Android dating app prototype built in **Kotlin**. It walks users through a complete dating app experience — from phone authentication and profile creation to browsing matches — all powered by Firebase.
 
-This is a functional UI+logic project with **Firebase OTP Auth**, **Cloud Firestore**, **Firebase Storage**, **ExoPlayer**, and more.
+This is a functional UI+logic project with **Firebase OTP Auth**, **Real-time Firebase DB**, **Firebase Storage**, **ExoPlayer**, and more.
 
 ---
 
